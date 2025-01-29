@@ -2,11 +2,13 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.IFollower;
 
+
 public class FRC2024TeleopDecisionMaker {
   private FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
   private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new FRC2024WeaponsJoystick();
-  private FRC2024Controller m_TheController = new FRC2024Controller();
-  private FRC2024WeaponsController m_TheWeaponsController = new FRC2024WeaponsController();
+  private AlgaeHandler m_AlgaeHandler;
+
+  private boolean holdingAlgae = false;
 
   private FRC2024Chassis m_Chassis;
 
@@ -14,7 +16,6 @@ public class FRC2024TeleopDecisionMaker {
 
   FRC2024TeleopDecisionMaker(){
 
-    m_Chassis = new FRC2024Chassis();
   }
 
   public void initialize(){
@@ -40,8 +41,48 @@ public class FRC2024TeleopDecisionMaker {
         m_Chassis.resetPigeon();
       }
 
+// if one button
 
 
+      if (m_TheWeaponsJoystick.button2Pushed()) {
+        if (holdingAlgae) {
+          m_AlgaeHandler.suck();
+        }else{
+          m_AlgaeHandler.unSuck();
+        }
+      }else{
+        m_AlgaeHandler.stop();
+        if (m_TheWeaponsJoystick.button2ReleaseEvent()) {
+          if (holdingAlgae) {
+            holdingAlgae = false;
+          }else{
+            holdingAlgae = true;
+          }
+          
+        }
+      }
+
+
+      // If two button algae handling
+
+      // if (m_TheWeaponsJoystick.button3Pushed()) {
+      //   m_AlgaeHandler.suck();
+      //   m_AlgaeHandler.stop();
+      // }
+
+      // if(m_TheWeaponsJoystick.button5Pushed()){
+      //   m_AlgaeHandler.shoot();
+      //   m_AlgaeHandler.stop();
+      // }
   }
+
+  public void setChassis(FRC2024Chassis theChassis){
+    m_Chassis = theChassis;
+  }
+
+  public void setAlgaeHandler(AlgaeHandler theHandler){
+    m_AlgaeHandler = theHandler;
+  }
+
 
 }

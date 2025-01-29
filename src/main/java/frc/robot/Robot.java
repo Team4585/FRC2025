@@ -23,8 +23,9 @@ public class Robot extends HuskyRobot {
   private FRC2024TeleopDecisionMaker m_TeleopDecider = new FRC2024TeleopDecisionMaker();
   private FRC2024AutonomousDecisionMaker m_AutoDecider = new FRC2024AutonomousDecisionMaker();
 
-  //private FRC2024Chassis m_TheChassis = new FRC2024Chassis();
+  private FRC2024Chassis m_TheChassis = new FRC2024Chassis();
 
+  private AlgaeHandler m_AlgaeHandler = new AlgaeHandler();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -38,7 +39,11 @@ public class Robot extends HuskyRobot {
 
     m_TeleopDecider.initialize();
     m_AutoDecider.initialize();
+    
+    m_AlgaeHandler.Initialize();
 
+    m_TeleopDecider.setChassis(m_TheChassis);
+    m_TeleopDecider.setAlgaeHandler(m_AlgaeHandler);
   }
 
   /**

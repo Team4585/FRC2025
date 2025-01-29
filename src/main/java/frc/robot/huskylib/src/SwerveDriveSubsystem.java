@@ -102,6 +102,7 @@ public class SwerveDriveSubsystem extends RoboDevice {
 
     @Override
     public void doGatherInfo() {
+        super.doGatherInfo();
         // Update odometry
         odometry.update(
             Rotation2d.fromDegrees(pigeon.getYaw().getValue().magnitude()),

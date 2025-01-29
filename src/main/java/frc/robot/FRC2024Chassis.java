@@ -24,6 +24,7 @@ public class FRC2024Chassis extends RoboDevice{
 
     m_currentLocation = new HuskyVector2D();
     m_currentVelocity = new HuskyVector2D();
+  
   }
 
   public void Initialize(){

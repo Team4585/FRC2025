@@ -97,4 +97,24 @@ public class FRC2024WeaponsJoystick extends HuskyJoystick{
   public Boolean triggerReleaseEvent(){
     return buttonReleaseEvent(TRIGGER_BUTTON);
   }
+
+  public Boolean button2Pushed(){
+    return isButtonPushed(1);
+  }
+
+  public Boolean button2PressEvent(){
+    return buttonPressEvent(1);
+  }
+    
+  public Boolean button2ReleaseEvent(){
+    return buttonReleaseEvent(1);
+  }
+  
+  public Boolean button5Pushed(){
+    return isButtonPushed(4);
+  }
+  
+  public Boolean button3Pushed(){
+    return isButtonPushed(2);
+  }
 }
