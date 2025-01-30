@@ -26,6 +26,7 @@ public class Robot extends HuskyRobot {
   private FRC2024Chassis m_TheChassis = new FRC2024Chassis();
 
   private AlgaeHandler m_AlgaeHandler = new AlgaeHandler();
+  private CoralHandler m_CoralHandler = new CoralHandler();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -40,10 +41,12 @@ public class Robot extends HuskyRobot {
     m_TeleopDecider.initialize();
     m_AutoDecider.initialize();
     
+    m_CoralHandler.Initialize();
     m_AlgaeHandler.Initialize();
 
     m_TeleopDecider.setChassis(m_TheChassis);
     m_TeleopDecider.setAlgaeHandler(m_AlgaeHandler);
+    m_TeleopDecider.setCoralHandler(m_CoralHandler);
   }
 
   /**

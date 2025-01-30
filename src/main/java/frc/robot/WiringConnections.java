@@ -55,4 +55,5 @@ public final class WiringConnections {
   // public static final int XX = CAN_CHANNEL_7;
 
   public static final int ALGAE_CIM = 10;
+  public static final int CORAL_MOTOR = 11;
 }

@@ -7,8 +7,7 @@ public class FRC2024TeleopDecisionMaker {
   private FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
   private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new FRC2024WeaponsJoystick();
   private AlgaeHandler m_AlgaeHandler;
-
-  private boolean holdingAlgae = false;
+  private CoralHandler m_CoralHandler;
 
   private FRC2024Chassis m_Chassis;
 
@@ -45,23 +44,18 @@ public class FRC2024TeleopDecisionMaker {
 
 
       if (m_TheWeaponsJoystick.button2Pushed()) {
-        if (holdingAlgae) {
-          m_AlgaeHandler.suck();
-        }else{
-          m_AlgaeHandler.unSuck();
-        }
-      }else{
-        m_AlgaeHandler.stop();
-        if (m_TheWeaponsJoystick.button2ReleaseEvent()) {
-          if (holdingAlgae) {
-            holdingAlgae = false;
-          }else{
-            holdingAlgae = true;
-          }
-          
-        }
+        m_AlgaeHandler.moveAlgae();
       }
-
+      if (m_TheWeaponsJoystick.button2ReleaseEvent()) {
+        m_AlgaeHandler.idle();
+      }
+      
+      if (m_TheWeaponsJoystick.triggerPushed()) {
+        m_CoralHandler.moveCoral();
+      }
+      if (m_TheWeaponsJoystick.triggerReleaseEvent()) {
+        m_CoralHandler.stop();
+      }
 
       // If two button algae handling
 
@@ -82,6 +76,10 @@ public class FRC2024TeleopDecisionMaker {
 
   public void setAlgaeHandler(AlgaeHandler theHandler){
     m_AlgaeHandler = theHandler;
+  }
+
+  public void setCoralHandler(CoralHandler coralHandler){
+    m_CoralHandler = coralHandler;
   }
 
 
