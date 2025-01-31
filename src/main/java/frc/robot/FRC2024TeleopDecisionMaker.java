@@ -8,7 +8,7 @@ public class FRC2024TeleopDecisionMaker {
   private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new FRC2024WeaponsJoystick();
   private AlgaeHandler m_AlgaeHandler;
   private CoralHandler m_CoralHandler;
-
+  private Elevator m_Elevator;
   private FRC2024Chassis m_Chassis;
 
   boolean isFieldOriented = false;
@@ -28,6 +28,9 @@ public class FRC2024TeleopDecisionMaker {
       isFieldOriented
       );
 
+      m_Elevator.elevate(
+        m_TheWeaponsJoystick.getForwardBackwardValue());
+      
       if (m_TheJoystick.button7PressEvent()) {
         if (isFieldOriented) {
           isFieldOriented = false;
@@ -82,5 +85,8 @@ public class FRC2024TeleopDecisionMaker {
     m_CoralHandler = coralHandler;
   }
 
+  public void setElevator(Elevator elevator){
+    m_Elevator = elevator;
+  }
 
 }

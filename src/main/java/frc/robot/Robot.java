@@ -27,7 +27,7 @@ public class Robot extends HuskyRobot {
 
   private AlgaeHandler m_AlgaeHandler = new AlgaeHandler();
   private CoralHandler m_CoralHandler = new CoralHandler();
-
+  private Elevator m_Elevator = new Elevator();
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -41,12 +41,14 @@ public class Robot extends HuskyRobot {
     m_TeleopDecider.initialize();
     m_AutoDecider.initialize();
     
+    m_Elevator.Initialize();
     m_CoralHandler.Initialize();
     m_AlgaeHandler.Initialize();
 
     m_TeleopDecider.setChassis(m_TheChassis);
     m_TeleopDecider.setAlgaeHandler(m_AlgaeHandler);
     m_TeleopDecider.setCoralHandler(m_CoralHandler);
+    m_TeleopDecider.setElevator(m_Elevator);
   }
 
   /**
