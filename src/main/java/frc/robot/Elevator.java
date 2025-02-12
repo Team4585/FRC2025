@@ -37,7 +37,7 @@ public class Elevator extends RoboDevice{
     targPos =  elevatorEncoder.getPosition();
     //targPos += 50;
     
-    elevatorConfig.closedLoop.pid(0.025, 0.3, .015);
+    elevatorConfig.closedLoop.pid(0.01, 0, 0);
     elevatorConfig.closedLoop.maxOutput(1);
     elevatorConfig.closedLoop.minOutput(-1);
 
@@ -49,6 +49,7 @@ public class Elevator extends RoboDevice{
 
     elevatorPID.setReference(targPos, ControlType.kPosition);
   }
+  
 
   @Override
   public void doGatherInfo() {

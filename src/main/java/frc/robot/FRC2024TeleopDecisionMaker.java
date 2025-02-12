@@ -45,17 +45,21 @@ public class FRC2024TeleopDecisionMaker {
 
 // if one button
 
+      m_AlgaeHandler.switchStop();
 
-      if (m_TheWeaponsJoystick.button2Pushed()) {
+      if (m_TheWeaponsJoystick.button2PressEvent()) {
         m_AlgaeHandler.moveAlgae();
       }
       if (m_TheWeaponsJoystick.button2ReleaseEvent()) {
-        m_AlgaeHandler.idle();
+        m_AlgaeHandler.stop();
       }
       
-      if (m_TheWeaponsJoystick.triggerPushed()) {
+      m_CoralHandler.switchStop();
+
+      if (m_TheWeaponsJoystick.triggerPressEvent()) {
         m_CoralHandler.moveCoral();
       }
+
       if (m_TheWeaponsJoystick.triggerReleaseEvent()) {
         m_CoralHandler.stop();
       }
@@ -89,4 +93,5 @@ public class FRC2024TeleopDecisionMaker {
     m_Elevator = elevator;
   }
 
+  
 }

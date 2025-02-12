@@ -3,6 +3,7 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.WiringConnections;
 import frc.robot.huskylib.src.*;
 import frc.robot.huskylib.src.RoboDevice;
@@ -10,6 +11,7 @@ import frc.robot.huskylib.src.RoboDevice;
 public class AlgaeHandler extends RoboDevice{
 
   private VictorSPX algaeMotor;
+  private DigitalInput algaeSensor;
 
   private boolean holdingAlgae;
   public AlgaeHandler(){
@@ -19,14 +21,24 @@ public class AlgaeHandler extends RoboDevice{
   
   public void Initialize(){
     algaeMotor = new VictorSPX(WiringConnections.ALGAE_CIM);
+    algaeSensor = new DigitalInput(1);
     holdingAlgae = false;
   }
 
   public void moveAlgae(){
     if (holdingAlgae) {
-      suck();
-    }else{
       unSuck();
+    }else{
+      suck();
+    }
+  }
+
+  public void switchStop(){
+    if (!algaeSensor.get()) {
+      if (!holdingAlgae) {
+        stop();
+        holdingAlgae = true;
+      }
     }
   }
 
@@ -36,7 +48,7 @@ public class AlgaeHandler extends RoboDevice{
       stop();
     }else{
       holdingAlgae = true;
-      keepAlgea();
+      stop();
     }
   }
 
@@ -50,6 +62,7 @@ public class AlgaeHandler extends RoboDevice{
 
   public void stop(){
     algaeMotor.set(ControlMode.PercentOutput, 0);
+    holdingAlgae = false;
   }
   
   public void keepAlgea(){

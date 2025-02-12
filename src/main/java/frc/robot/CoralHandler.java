@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.WiringConnections;
 import frc.robot.huskylib.src.*;
 import frc.robot.huskylib.src.RoboDevice;
@@ -12,6 +13,7 @@ import frc.robot.huskylib.src.RoboDevice;
 public class CoralHandler extends RoboDevice{
 
   private SparkMax coralMotor;
+  private DigitalInput coralSensor;
 
   private boolean holdingCoral;
 
@@ -22,6 +24,7 @@ public class CoralHandler extends RoboDevice{
   
   public void Initialize(){
     coralMotor = new SparkMax(WiringConnections.CORAL_MOTOR, MotorType.kBrushless);
+    coralSensor = new DigitalInput(0);
     holdingCoral = false;
   }
 
@@ -33,9 +36,19 @@ public class CoralHandler extends RoboDevice{
     }
   }
 
+  public void switchStop() {
+    if (!coralSensor.get()) {
+      if (!holdingCoral) {
+      stop();
+      holdingCoral = true;
+      }
+    }
+  }
+
+  
   public void stop(){
     stopMotor();
-    holdingCoral = !holdingCoral;
+    holdingCoral = false;
   }
 
   private void intake(){
