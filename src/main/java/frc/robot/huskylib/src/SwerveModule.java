@@ -35,6 +35,7 @@ class SwerveModule extends RoboDevice{
     private RelativeEncoder driveEncoder;
     private RelativeEncoder steerEncoder;
     private SparkClosedLoopController steerPid;
+    private SparkClosedLoopController drivePid;
     private String moduleName;
 
     public SwerveModule(int driveMotorId, 
@@ -49,6 +50,11 @@ class SwerveModule extends RoboDevice{
         driveMotor = new SparkMax(driveMotorId, MotorType.kBrushless);
         driveConfig = new SparkMaxConfig();
         driveEncoder = driveMotor.getEncoder();
+        drivePid = driveMotor.getClosedLoopController();
+
+        driveConfig.closedLoop.pid(0.01, 0, 0)
+                            .maxOutput(1)
+                            .minOutput(-1);
 
         // Configure steering motor
         steerMotor = new SparkMax(steerMotorId, MotorType.kBrushless);
@@ -98,6 +104,9 @@ class SwerveModule extends RoboDevice{
         );
     }
 
+    public double getDrivePos(){
+        return driveEncoder.getPosition();
+    }
 
     public void setDesiredState(SwerveModuleState desiredState) {
         // Create current state

@@ -3,14 +3,12 @@ package frc.robot;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkRelativeEncoder;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
-import frc.robot.huskylib.src.*;
 import frc.robot.huskylib.src.RoboDevice;
 
 
@@ -22,7 +20,15 @@ public class Elevator extends RoboDevice{
   private SparkMaxConfig elevatorConfig;
 
   private double targPos;
-  
+//TODO set correct positions
+  private final double HIGH_POS = 0;
+  private final double MID_POS = 0;
+  private final double LOW_POS = 0;
+  private final double TRAY_POS = 0;
+  private final double RESET_POS = 0;
+
+
+  private int count = 0;
 
   public Elevator(){
     super("Elevator");
@@ -42,6 +48,72 @@ public class Elevator extends RoboDevice{
     elevatorConfig.closedLoop.minOutput(-1);
 
     elevatorMotor.configure(elevatorConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+  }
+
+  public void highCoral(){
+    elevatorPID.setReference(HIGH_POS, ControlType.kPosition);
+    count = 4;
+  }
+
+  private void midCoral(){
+    elevatorPID.setReference(MID_POS, ControlType.kPosition);
+  }
+
+  private void lowCoral(){
+    elevatorPID.setReference(LOW_POS, ControlType.kPosition);
+  }
+
+  private void trayCoral(){
+    elevatorPID.setReference(TRAY_POS, ControlType.kPosition);
+  }
+
+  public void resetElevator(){
+    elevatorPID.setReference(RESET_POS, ControlType.kPosition);
+    count = 0;
+  }
+
+  public boolean inPosition(){
+    switch (count) {
+      case 1:
+        return elevatorEncoder.getPosition() == TRAY_POS;
+      case 2:
+        return elevatorEncoder.getPosition() == LOW_POS;
+      case 3:
+        return elevatorEncoder.getPosition() == MID_POS;
+      case 4:
+        return elevatorEncoder.getPosition() == HIGH_POS;
+      case 5:
+        return elevatorEncoder.getPosition() == RESET_POS;
+      default:
+        return false;
+    }
+  }
+
+  public void fixedElevate(){
+    count++;
+    
+    switch (count) {
+      case 1:
+        trayCoral();
+        break;
+      case 2:
+        lowCoral();
+        break;
+      case 3:
+        midCoral();
+        break;
+      case 4:
+        highCoral();
+        break;
+      case 5:
+        resetElevator();
+        count = 0;
+        break;
+      default:
+        resetElevator();
+        count = 0;
+        break;
+    }
   }
 
   public void elevate(double moveSpeed){

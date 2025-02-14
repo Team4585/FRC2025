@@ -1,13 +1,9 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.WiringConnections;
-import frc.robot.huskylib.src.*;
 import frc.robot.huskylib.src.RoboDevice;
 
 public class CoralHandler extends RoboDevice{

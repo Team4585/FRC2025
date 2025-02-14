@@ -2,21 +2,26 @@ package frc.robot;
 
 import java.util.List;
 
+import javax.lang.model.element.ElementVisitor;
+
 import frc.robot.autonomous.AutonomousTaskBase;
 import frc.robot.autonomous.AutonomousTaskDispatcher;
+import frc.robot.autonomous.tasks.AutoTaskDriveForward;
+import frc.robot.autonomous.tasks.AutoTaskHighCoral;
+import frc.robot.autonomous.tasks.AutoTaskResetElevator;
 import frc.robot.autonomous.tasks.AutoTaskStartSequence;
 
 public class FRC2024AutonomousDecisionMaker {
   private List<AutonomousTaskBase> m_TaskList;
   private AutonomousTaskDispatcher m_autoTaskDispatcher;
 
-  //private FRC2024Chassis m_Chassis;
+  private FRC2024Chassis m_Chassis;
+  private Elevator m_Elevator;
+  private CoralHandler m_CoralHandler;
 
-  private double chassisKp = 0.007;
-  private double chassisKi = 0.12;
-  private double chassisKd = 0;
-  private double chassisDt = 1;
-
+  private AutoTaskDriveForward autoStartForward = new AutoTaskDriveForward();
+  private AutoTaskHighCoral autoCoral = new AutoTaskHighCoral();
+  private AutoTaskResetElevator autoresetElevator = new AutoTaskResetElevator();
 
   // Auto initialization
 
@@ -50,7 +55,10 @@ public class FRC2024AutonomousDecisionMaker {
    AutonomousTaskBase startTask = new AutoTaskStartSequence();
 
    m_TaskList = List.of(
-    startTask
+    startTask,
+    autoStartForward,
+    autoCoral,
+    autoresetElevator
    );
 
     m_autoTaskDispatcher = new AutonomousTaskDispatcher(m_TaskList);
@@ -64,6 +72,26 @@ public class FRC2024AutonomousDecisionMaker {
   public void doDecisions(){
     m_autoTaskDispatcher.RunAutoTask();
     //System.out.println("Entering autonomous decisions");
+  }
+
+  public void setChassis(FRC2024Chassis chassis){
+    m_Chassis = chassis;
+    autoStartForward.setChassis(m_Chassis);
+
+  }
+
+
+  public void setCoralHandler(CoralHandler handler){
+    m_CoralHandler = handler;
+
+    autoCoral.setCoralHandler(m_CoralHandler);
+  }
+
+  public void setElevator(Elevator elevator){
+    m_Elevator = elevator;
+
+    autoCoral.setElevator(m_Elevator);
+    autoresetElevator.setElevator(m_Elevator);
   }
 
 

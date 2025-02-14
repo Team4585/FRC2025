@@ -49,6 +49,10 @@ public class Robot extends HuskyRobot {
     m_TeleopDecider.setAlgaeHandler(m_AlgaeHandler);
     m_TeleopDecider.setCoralHandler(m_CoralHandler);
     m_TeleopDecider.setElevator(m_Elevator);
+
+    m_AutoDecider.setChassis(m_TheChassis);
+    m_AutoDecider.setCoralHandler(m_CoralHandler);
+    m_AutoDecider.setElevator(m_Elevator);
   }
 
   /**

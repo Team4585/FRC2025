@@ -100,6 +100,10 @@ public class SwerveDriveSubsystem extends RoboDevice {
         backRight.setDesiredState(states[3]);
     }
 
+    public double getDrivePos(){
+       return frontLeft.getDrivePos();
+    }
+
     @Override
     public void doGatherInfo() {
         super.doGatherInfo();

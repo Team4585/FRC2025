@@ -1,6 +1,5 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.IFollower;
 
 
 public class FRC2024TeleopDecisionMaker {
@@ -57,11 +56,17 @@ public class FRC2024TeleopDecisionMaker {
       m_CoralHandler.switchStop();
 
       if (m_TheWeaponsJoystick.triggerPressEvent()) {
-        m_CoralHandler.moveCoral();
+        if (m_Elevator.inPosition()) {
+          m_CoralHandler.moveCoral();
+        }
       }
 
       if (m_TheWeaponsJoystick.triggerReleaseEvent()) {
         m_CoralHandler.stop();
+      }
+
+      if (m_TheWeaponsJoystick.button3PressEvent()) {
+        m_Elevator.fixedElevate();
       }
 
       // If two button algae handling

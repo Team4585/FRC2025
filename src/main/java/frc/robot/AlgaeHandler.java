@@ -4,8 +4,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.WiringConnections;
-import frc.robot.huskylib.src.*;
 import frc.robot.huskylib.src.RoboDevice;
 
 public class AlgaeHandler extends RoboDevice{
