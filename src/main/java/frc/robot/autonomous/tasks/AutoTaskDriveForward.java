@@ -26,6 +26,7 @@ public class AutoTaskDriveForward extends AutonomousTaskBase {
     @Override
     public boolean CheckTask() {
         if (m_Chassis.getDrivePos() == DISTANCE_NEEDED) {
+            m_Chassis.setTargSpeec(0, 0, 0, true)
             return true;
         }else{
             return false;
