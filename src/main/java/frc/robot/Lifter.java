@@ -25,7 +25,7 @@ public class Lifter extends RoboDevice{
   }
   
   public void Initialize(){
-    lifterMotor = new SparkMax(0, MotorType.kBrushless);
+    lifterMotor = new SparkMax(13, MotorType.kBrushless);
 
     lifterEncoder = lifterMotor.getEncoder();
     lifterPID = lifterMotor.getClosedLoopController();
