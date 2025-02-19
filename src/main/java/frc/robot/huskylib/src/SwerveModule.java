@@ -4,9 +4,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
-import com.revrobotics.spark.SparkBase;
 import com.revrobotics.spark.SparkClosedLoopController;
-import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -14,8 +12,6 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.AnalogEncoder;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 class SwerveModule extends RoboDevice{
@@ -23,7 +19,6 @@ class SwerveModule extends RoboDevice{
     private static final double WHEEL_DIAMETER = 0.0762; // 3 inches in meters
     private static final double DRIVE_GEAR_RATIO = 4.13;
     private static final double STEER_GEAR_RATIO = 41.25;
-    private static final double MAX_SPEED = 4.0; // meters per second
 
     // Hardware
 //x    private final SparkMax driveMotor;
@@ -35,7 +30,6 @@ class SwerveModule extends RoboDevice{
     private RelativeEncoder driveEncoder;
     private RelativeEncoder steerEncoder;
     private SparkClosedLoopController steerPid;
-    private SparkClosedLoopController drivePid;
     private String moduleName;
 
     public SwerveModule(int driveMotorId, 
@@ -50,7 +44,6 @@ class SwerveModule extends RoboDevice{
         driveMotor = new SparkMax(driveMotorId, MotorType.kBrushless);
         driveConfig = new SparkMaxConfig();
         driveEncoder = driveMotor.getEncoder();
-        drivePid = driveMotor.getClosedLoopController();
 
         driveConfig.closedLoop.pid(0.01, 0, 0)
                             .maxOutput(1)

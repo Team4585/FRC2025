@@ -1,6 +1,5 @@
 package frc.robot;
 
-import frc.robot.huskylib.src.*;
 //import frc.robot.huskylib.src.SwerveDriveTrain;
 import frc.robot.huskylib.src.SwerveDriveSubsystem;
 import frc.robot.huskylib.src.RoboDevice;
@@ -13,17 +12,17 @@ public class FRC2024Chassis extends RoboDevice{
 
   private SwerveDriveSubsystem m_driveTrain = new SwerveDriveSubsystem();
 
-  private HuskyVector2D m_currentLocation;
-  private double m_currentHeading = 0.0;
-  private HuskyVector2D m_currentVelocity;
+  // private HuskyVector2D m_currentLocation;
+  // private double m_currentHeading = 0.0;
+  // private HuskyVector2D m_currentVelocity;
 
   public FRC2024Chassis(){
     super("FRC2024Chassis");
 
     AddChildDevice(m_driveTrain);
 
-    m_currentLocation = new HuskyVector2D();
-    m_currentVelocity = new HuskyVector2D();
+    // m_currentLocation = new HuskyVector2D();
+    // m_currentVelocity = new HuskyVector2D();
   
   }
 

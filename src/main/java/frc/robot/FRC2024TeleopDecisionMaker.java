@@ -9,6 +9,7 @@ public class FRC2024TeleopDecisionMaker {
   private CoralHandler m_CoralHandler;
   private Elevator m_Elevator;
   private FRC2024Chassis m_Chassis;
+  private Lifter m_Lifter;
 
   boolean isFieldOriented = false;
 
@@ -69,6 +70,10 @@ public class FRC2024TeleopDecisionMaker {
         m_Elevator.fixedElevate();
       }
 
+      if (m_TheWeaponsJoystick.button5Pushed()) {
+        m_Lifter.lift();
+      }
+
       // If two button algae handling
 
       // if (m_TheWeaponsJoystick.button3Pushed()) {
@@ -96,6 +101,10 @@ public class FRC2024TeleopDecisionMaker {
 
   public void setElevator(Elevator elevator){
     m_Elevator = elevator;
+  }
+
+  public void setLifter(Lifter lifter){
+    m_Lifter = lifter;
   }
 
   
