@@ -42,6 +42,10 @@ public class FRC2024Chassis extends RoboDevice{
     m_driveTrain.drive(targFB, targSS, targRot, fieldRelative);
   }
 
+  public void stabilize(boolean fieldRelative){
+    m_driveTrain.stabilize(fieldRelative);
+  }
+
   public double getDrivePos(){
     return m_driveTrain.getDrivePos();
   }

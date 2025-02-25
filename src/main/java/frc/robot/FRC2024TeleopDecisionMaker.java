@@ -28,6 +28,8 @@ public class FRC2024TeleopDecisionMaker {
       isFieldOriented
       );
 
+      m_Chassis.stabilize(isFieldOriented);
+
       m_Elevator.elevate(
         m_TheWeaponsJoystick.getForwardBackwardValue());
       

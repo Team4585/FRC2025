@@ -26,6 +26,9 @@ public class SwerveDriveSubsystem extends RoboDevice {
     private static final double WHEEL_BASE = 0.5; // meters
     private static final double TRACK_WIDTH = 0.5; // meters
 
+    private double pitch;
+    private double roll;
+
     // Swerve Modules
     private SwerveModule frontLeft;
     private SwerveModule frontRight;
@@ -99,6 +102,21 @@ public class SwerveDriveSubsystem extends RoboDevice {
         backRight.setDesiredState(states[3]);
     }
 
+    //TODO double check that values are correct (may have to invert drive values)
+    public void stabilize(boolean fieldRelative){
+       pitch = pigeon.getPitch().getValueAsDouble();
+       roll = pigeon.getRoll().getValueAsDouble();
+
+        if (pitch < -0.05) {
+            drive(.5, 0, 0, fieldRelative);
+        }if (pitch > 0.05) {
+            drive(-.5, 0, 0, fieldRelative);
+        }if (roll < -0.05) { 
+            drive(0, 0.5, 0, fieldRelative);
+        }if (roll > .05) {
+            drive(0, -0.5, 0, fieldRelative);
+        }
+    }
     public double getDrivePos(){
        return frontLeft.getDrivePos();
     }
