@@ -91,7 +91,7 @@ public class Elevator extends RoboDevice{
 
   public void fixedElevate(){
     count++;
-    
+
     switch (count) {
       case 1:
         trayCoral();

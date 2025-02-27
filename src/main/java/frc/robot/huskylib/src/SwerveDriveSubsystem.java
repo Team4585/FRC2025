@@ -102,19 +102,18 @@ public class SwerveDriveSubsystem extends RoboDevice {
         backRight.setDesiredState(states[3]);
     }
 
-    //TODO double check that values are correct (may have to invert drive values)
     public void stabilize(boolean fieldRelative){
        pitch = pigeon.getPitch().getValueAsDouble();
        roll = pigeon.getRoll().getValueAsDouble();
 
-        if (pitch < -0.05) {
-            drive(.5, 0, 0, fieldRelative);
-        }if (pitch > 0.05) {
-            drive(-.5, 0, 0, fieldRelative);
-        }if (roll < -0.05) { 
-            drive(0, 0.5, 0, fieldRelative);
-        }if (roll > .05) {
-            drive(0, -0.5, 0, fieldRelative);
+        if (pitch < -2) {
+            drive(0, -0.1, 0, false);
+        }if (pitch > 2) {
+            drive(0, .1, 0, false);
+        }if (roll < -2) { 
+            drive(-0.1, 0, 0, false);
+        }if (roll > 2) {
+            drive(.1, 0, 0, false);
         }
     }
     public double getDrivePos(){
