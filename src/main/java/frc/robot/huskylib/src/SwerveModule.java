@@ -21,15 +21,20 @@ class SwerveModule extends RoboDevice{
     private static final double STEER_GEAR_RATIO = 41.25;
 
     // Hardware
-//x    private final SparkMax driveMotor;
     private SparkMax driveMotor;
     private SparkMax steerMotor;
+
     private SparkMaxConfig driveConfig;
     private SparkMaxConfig steerConfig;
-//x    private final RelativeEncoder driveEncoder;
+
     private RelativeEncoder driveEncoder;
     private RelativeEncoder steerEncoder;
+
     private SparkClosedLoopController steerPid;
+
+    private int driveMotorId;
+    private int steerMotorId;
+    private boolean inversion;
     private String moduleName;
 
     public SwerveModule(int driveMotorId, 
@@ -39,6 +44,13 @@ class SwerveModule extends RoboDevice{
     
         super("Swerve Module");
         this.moduleName = moduleName;
+        this.driveMotorId = driveMotorId;
+        this.steerMotorId = steerMotorId;
+        this.inversion = inversion;
+
+    }
+
+    public void Initialize(){
 
         // Configure drive motor
         driveMotor = new SparkMax(driveMotorId, MotorType.kBrushless);
@@ -60,34 +72,26 @@ class SwerveModule extends RoboDevice{
         steerConfig.closedLoop.pid(0.01, 0.0, 0.0);
         steerConfig.closedLoop.maxOutput(1);
         steerConfig.closedLoop.minOutput(-1);
-        //steerPIDController.setOutputRange(-1, 1);
         
 
         // Set conversion factors
         double driveConversionFactor = (Math.PI * WHEEL_DIAMETER) / DRIVE_GEAR_RATIO;
-        //driveEncoder.setPositionConversionFactor(driveConversionFactor);
-        //driveEncoder.setVelocityConversionFactor(driveConversionFactor / 60.0);
         driveConfig.inverted(inversion);
         driveConfig.encoder.positionConversionFactor(driveConversionFactor);
         driveConfig.encoder.velocityConversionFactor(driveConversionFactor/60.0);
 
         double steerConversionFactor = 360.0 / STEER_GEAR_RATIO;
-        //steerEncoder.setPositionConversionFactor(steerConversionFactor);
-        //steerEncoder.setVelocityConversionFactor(steerConversionFactor / 60.0);
         steerConfig.encoder.positionConversionFactor(steerConversionFactor);
         steerConfig.encoder.velocityConversionFactor(steerConversionFactor/60.0);
 
         
 
         // Save configurations
-        //driveMotor.burnFlash();
-        //steerMotor.burnFlash();
         driveMotor.configure(driveConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
         steerMotor.configure(steerConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
 
         // Log configuration
         SmartDashboard.putString(moduleName + " Status", "Initialized");
-
     }
 
     public SwerveModuleState getState() {

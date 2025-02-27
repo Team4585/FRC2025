@@ -19,7 +19,7 @@ public class AlgaeHandler extends RoboDevice{
   
   public void Initialize(){
     algaeMotor = new VictorSPX(WiringConnections.ALGAE_CIM);
-    algaeSensor = new DigitalInput(1);
+    algaeSensor = new DigitalInput(WiringConnections.ALGAE_SWITCH_DIO);
     holdingAlgae = false;
   }
 

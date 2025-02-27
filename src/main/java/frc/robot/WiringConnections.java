@@ -54,6 +54,18 @@ public final class WiringConnections {
   // public static final int XX = CAN_CHANNEL_6;
   // public static final int XX = CAN_CHANNEL_7;
 
+  public static final int CORAL_SWITCH_DIO = 0;
+  public static final int ALGAE_SWITCH_DIO = 1;
+
+  public static final int FRONT_LEFT_DRIVE_MOTOR_ID = 1;
+  public static final int FRONT_LEFT_STEER_MOTOR_ID = 2;
+  public static final int FRONT_RIGHT_DRIVE_MOTOR_ID = 3;
+  public static final int FRONT_RIGHT_STEER_MOTOR_ID = 4;
+  public static final int BACK_LEFT_DRIVE_MOTOR_ID = 5;
+  public static final int BACK_LEFT_STEER_MOTOR_ID = 6;
+  public static final int BACK_RIGHT_DRIVE_MOTOR_ID = 7;
+  public static final int BACK_RIGHT_STEER_MOTOR_ID = 8;
+  public static final int PIGEON_CAN_ID = 9;
   public static final int ALGAE_CIM = 10;
   public static final int CORAL_MOTOR = 11;
 }

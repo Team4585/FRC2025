@@ -20,7 +20,7 @@ public class CoralHandler extends RoboDevice{
   
   public void Initialize(){
     coralMotor = new SparkMax(WiringConnections.CORAL_MOTOR, MotorType.kBrushless);
-    coralSensor = new DigitalInput(0);
+    coralSensor = new DigitalInput(WiringConnections.CORAL_SWITCH_DIO);
     holdingCoral = false;
   }
 

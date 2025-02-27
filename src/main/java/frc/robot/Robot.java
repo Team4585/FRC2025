@@ -42,6 +42,7 @@ public class Robot extends HuskyRobot {
     m_TeleopDecider.initialize();
     m_AutoDecider.initialize();
     
+    m_TheChassis.Initialize();
     m_Elevator.Initialize();
     m_CoralHandler.Initialize();
     m_AlgaeHandler.Initialize();

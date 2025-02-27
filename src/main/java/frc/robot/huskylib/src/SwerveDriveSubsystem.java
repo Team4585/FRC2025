@@ -11,24 +11,19 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//IMPORTANT!!!
-//IF BROKEN
-//CHECK THE
-//.MAGNITUDE
-//OR
-//CHECK THE
-//DO GATHER INFO
-//FOR THE LOVE OF GOD
+import frc.robot.WiringConnections;
+
 public class SwerveDriveSubsystem extends RoboDevice {
     // Constants
-    private static final int PIGEON_CAN_ID = 9;
     private static final double MAX_SPEED = 1.0; // meters per second
     private static final double WHEEL_BASE = 0.5; // meters
     private static final double TRACK_WIDTH = 0.5; // meters
 
     private double pitch;
     private double roll;
-
+    //point where modules will counteract tipping (degrees)
+    private static final double TIP_POINT = 2;
+    private static final double TIP_SPEED = .1;
     // Swerve Modules
     private SwerveModule frontLeft;
     private SwerveModule frontRight;
@@ -40,23 +35,42 @@ public class SwerveDriveSubsystem extends RoboDevice {
     //x private final SwerveModule backRight;
 
     // Pigeon IMU
-    private final Pigeon2 pigeon;
+    private  Pigeon2 pigeon;
 
     // Kinematics and Odometry
-    private final SwerveDriveKinematics kinematics;
+    private  SwerveDriveKinematics kinematics;
     private SwerveDriveOdometry odometry;
 //x    private final SwerveDriveOdometry odometry;
 
     public SwerveDriveSubsystem() {
         super("Swerve Drive Subsystem");
+
+    }
+
+    public void Initialize(){
         // Initialize swerve modules
-        backLeft = new SwerveModule(5, 6, true, "Back Left");
-        backRight = new SwerveModule(7, 8, false, "Back Right");
-        frontLeft = new SwerveModule(1, 2, true, "Front Left");
-        frontRight = new SwerveModule(3, 4, false, "Front Right");
+        frontLeft = new SwerveModule(WiringConnections.FRONT_LEFT_DRIVE_MOTOR_ID, 
+            WiringConnections.FRONT_LEFT_STEER_MOTOR_ID, true, 
+            "Front Left");
+        frontLeft.Initialize();
+
+        frontRight = new SwerveModule(WiringConnections.FRONT_RIGHT_DRIVE_MOTOR_ID, 
+            WiringConnections.FRONT_RIGHT_STEER_MOTOR_ID, false,
+            "Front Right");
+        frontRight.Initialize();
+
+        backLeft = new SwerveModule(WiringConnections.BACK_LEFT_DRIVE_MOTOR_ID, 
+            WiringConnections.BACK_LEFT_STEER_MOTOR_ID, true, 
+            "Back Left");
+        backLeft.Initialize();
+
+        backRight = new SwerveModule(WiringConnections.BACK_RIGHT_DRIVE_MOTOR_ID, 
+            WiringConnections.BACK_RIGHT_STEER_MOTOR_ID, false, 
+            "Back Right");
+        backRight.Initialize();
         
         // Initialize Pigeon IMU
-        pigeon = new Pigeon2(PIGEON_CAN_ID);
+        pigeon = new Pigeon2(WiringConnections.PIGEON_CAN_ID);
         pigeon.setYaw(0); // Reset yaw to 0
 
         // Define module locations relative to center of robot
@@ -106,14 +120,14 @@ public class SwerveDriveSubsystem extends RoboDevice {
        pitch = pigeon.getPitch().getValueAsDouble();
        roll = pigeon.getRoll().getValueAsDouble();
 
-        if (pitch < -2) {
-            drive(0, -0.1, 0, false);
-        }if (pitch > 2) {
-            drive(0, .1, 0, false);
-        }if (roll < -2) { 
-            drive(-0.1, 0, 0, false);
-        }if (roll > 2) {
-            drive(.1, 0, 0, false);
+        if (pitch < -TIP_POINT) {
+            drive(0, -TIP_SPEED, 0, false);
+        }if (pitch > TIP_POINT) {
+            drive(0, TIP_SPEED, 0, false);
+        }if (roll < -TIP_POINT) { 
+            drive(-TIP_SPEED, 0, 0, false);
+        }if (roll > TIP_POINT) {
+            drive(TIP_SPEED, 0, 0, false);
         }
     }
     public double getDrivePos(){

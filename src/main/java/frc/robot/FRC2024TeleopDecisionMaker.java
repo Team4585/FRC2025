@@ -76,17 +76,6 @@ public class FRC2024TeleopDecisionMaker {
         m_Lifter.lift();
       }
 
-      // If two button algae handling
-
-      // if (m_TheWeaponsJoystick.button3Pushed()) {
-      //   m_AlgaeHandler.suck();
-      //   m_AlgaeHandler.stop();
-      // }
-
-      // if(m_TheWeaponsJoystick.button5Pushed()){
-      //   m_AlgaeHandler.shoot();
-      //   m_AlgaeHandler.stop();
-      // }
   }
 
   public void setChassis(FRC2024Chassis theChassis){
