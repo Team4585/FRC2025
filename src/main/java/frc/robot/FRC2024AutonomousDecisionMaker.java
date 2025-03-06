@@ -55,9 +55,9 @@ public class FRC2024AutonomousDecisionMaker {
 
    m_TaskList = List.of(
     startTask,
-    autoStartForward,
-    autoCoral,
-    autoresetElevator
+    autoStartForward//,
+    // autoCoral,
+    // autoresetElevator
    );
 
     m_autoTaskDispatcher = new AutonomousTaskDispatcher(m_TaskList);

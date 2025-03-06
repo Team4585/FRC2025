@@ -11,6 +11,7 @@ public class FRC2024TeleopDecisionMaker {
   private FRC2024Chassis m_Chassis;
   private Lifter m_Lifter;
 
+  boolean slowDriving = false;
   boolean isFieldOriented = false;
 
   FRC2024TeleopDecisionMaker(){
@@ -22,11 +23,24 @@ public class FRC2024TeleopDecisionMaker {
 
   public void doDecisions(){
 
+    if (slowDriving) {
+      m_Chassis.setTargSpeed((m_TheJoystick.getForwardBackwardValue()/4),
+       -(m_TheJoystick.getSideToSideValue()/4),
+        -m_TheJoystick.getTwistValue(),
+         isFieldOriented);
+    }
+    if (!slowDriving) {
+      
     m_Chassis.setTargSpeed(m_TheJoystick.getForwardBackwardValue(),
-      -m_TheJoystick.getSideToSideValue(),
-      -m_TheJoystick.getTwistValue(),
-      isFieldOriented
-      );
+    -m_TheJoystick.getSideToSideValue(),
+    -m_TheJoystick.getTwistValue(),
+    isFieldOriented
+    );
+    }
+
+    if (m_TheJoystick.button8PressEvent()) {
+      slowDriving= !slowDriving;
+    }
 
       m_Chassis.stabilize(isFieldOriented);
 

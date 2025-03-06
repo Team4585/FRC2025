@@ -8,7 +8,7 @@ public class AutoTaskDriveForward extends AutonomousTaskBase {
 
     private FRC2024Chassis m_Chassis;
     //TODO find proper distance
-    private final double DISTANCE_NEEDED = 0;
+    private final double DISTANCE_NEEDED = -2.5;
 
 
     public void setChassis(FRC2024Chassis chassis){
@@ -20,12 +20,13 @@ public class AutoTaskDriveForward extends AutonomousTaskBase {
 
     @Override
     public void TaskInitialize() {
-        m_Chassis.setTargSpeed(1, 0, 0, true);
+        m_Chassis.setTargSpeed(-.3, 0, 0, true);
     }
 
     @Override
     public boolean CheckTask() {
-        if (m_Chassis.getDrivePos() == DISTANCE_NEEDED) {
+        System.out.println(m_Chassis.getDrivePos());
+        if (m_Chassis.getDrivePos() <= DISTANCE_NEEDED) {
             m_Chassis.setTargSpeed(0, 0, 0, true);
             return true;
         }else{

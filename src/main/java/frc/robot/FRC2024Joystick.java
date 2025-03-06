@@ -102,6 +102,10 @@ public class FRC2024Joystick extends HuskyJoystick{
     return buttonPressEvent(6);
   }
 
+  public boolean button8PressEvent(){
+    return buttonPressEvent(7);
+  }
+
   public boolean button9PressEvent(){
     return buttonPressEvent(8);
   }
