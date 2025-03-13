@@ -25,10 +25,10 @@ public class Lifter extends RoboDevice{
   }
   
   public void Initialize(){
-    lifterMotor = new SparkMax(13, MotorType.kBrushless);
+    lifterMotor = null; //new SparkMax(13, MotorType.kBrushless);
 
-    lifterEncoder = lifterMotor.getEncoder();
-    lifterPID = lifterMotor.getClosedLoopController();
+    //lifterEncoder = lifterMotor.getEncoder();
+    //lifterPID = lifterMotor.getClosedLoopController();
     lifterConfig = new SparkMaxConfig();
 
     targPos =  lifterEncoder.getPosition();
@@ -38,7 +38,7 @@ public class Lifter extends RoboDevice{
     lifterConfig.closedLoop.maxOutput(1);
     lifterConfig.closedLoop.minOutput(-1);
 
-    lifterMotor.configure(lifterConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+    //lifterMotor.configure(lifterConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
   }
 
 

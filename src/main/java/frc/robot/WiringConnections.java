@@ -68,4 +68,5 @@ public final class WiringConnections {
   public static final int PIGEON_CAN_ID = 9;
   public static final int ALGAE_CIM = 10;
   public static final int CORAL_MOTOR = 11;
+  public static final int ELEVATOR_MOTOR = 12;
 }

@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FRC2024TeleopDecisionMaker {
   private FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
@@ -44,8 +45,7 @@ public class FRC2024TeleopDecisionMaker {
 
     m_Chassis.stabilize(isFieldOriented);
 
-    m_Elevator.elevate(
-    m_weaponsController.getRightFB());
+    m_Elevator.elevate(1, -m_weaponsController.getRightFB());
       
     if (m_TheJoystick.button7PressEvent()) {
       if (isFieldOriented) {
@@ -80,6 +80,8 @@ public class FRC2024TeleopDecisionMaker {
     }
 
     m_CoralHandler.moveCoral(m_weaponsController.getLeftFB());
+
+    SmartDashboard.putNumber("ElevEncoder: ", m_Elevator.targPos);
 
     // m_AlgaeHandler.switchStop();
 
