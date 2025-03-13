@@ -25,10 +25,10 @@ public class Robot extends HuskyRobot {
 
   private FRC2024Chassis m_TheChassis = new FRC2024Chassis();
 
-  private AlgaeHandler m_AlgaeHandler = new AlgaeHandler();
+  // private AlgaeHandler m_AlgaeHandler = new AlgaeHandler();
   private CoralHandler m_CoralHandler = new CoralHandler();
   private Elevator m_Elevator = new Elevator();
-  private Lifter m_Lifter = new Lifter();
+  // private AlgaeLifter m_AlgaeLifter = new AlgaeLifter();
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -45,14 +45,14 @@ public class Robot extends HuskyRobot {
     m_TheChassis.Initialize();
     m_Elevator.Initialize();
     m_CoralHandler.Initialize();
-    m_AlgaeHandler.Initialize();
-    m_Lifter.Initialize();
+    // m_AlgaeHandler.Initialize();
+    // m_AlgaeLifter.Initialize();
 
     m_TeleopDecider.setChassis(m_TheChassis);
-    m_TeleopDecider.setAlgaeHandler(m_AlgaeHandler);
+    // m_TeleopDecider.setAlgaeHandler(m_AlgaeHandler);
     m_TeleopDecider.setCoralHandler(m_CoralHandler);
     m_TeleopDecider.setElevator(m_Elevator);
-    m_TeleopDecider.setLifter(m_Lifter);
+    // m_TeleopDecider.setAlgaeLifter(m_AlgaeLifter);
 
     m_AutoDecider.setChassis(m_TheChassis);
     m_AutoDecider.setCoralHandler(m_CoralHandler);

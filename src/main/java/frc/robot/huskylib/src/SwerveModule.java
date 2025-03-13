@@ -27,6 +27,7 @@ class SwerveModule extends RoboDevice{
     private SparkMaxConfig driveConfig;
     private SparkMaxConfig steerConfig;
 
+
     private RelativeEncoder driveEncoder;
     private RelativeEncoder steerEncoder;
 
@@ -51,6 +52,7 @@ class SwerveModule extends RoboDevice{
     }
 
     public void Initialize(){
+
 
         // Configure drive motor
         driveMotor = new SparkMax(driveMotorId, MotorType.kBrushless);
