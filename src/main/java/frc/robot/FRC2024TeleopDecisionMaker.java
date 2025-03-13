@@ -3,9 +3,10 @@ package frc.robot;
 
 public class FRC2024TeleopDecisionMaker {
   private FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
-  private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new FRC2024WeaponsJoystick();
+  // private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new FRC2024WeaponsJoystick();
   // private AlgaeHandler m_AlgaeHandler;
   private CoralHandler m_CoralHandler;
+  private WeaponsXboxController m_weaponsController = new WeaponsXboxController(1);
   private Elevator m_Elevator;
   private FRC2024Chassis m_Chassis;
   // private AlgaeLifter m_AlgaeLifter;
@@ -44,7 +45,7 @@ public class FRC2024TeleopDecisionMaker {
     m_Chassis.stabilize(isFieldOriented);
 
     m_Elevator.elevate(
-    m_TheWeaponsJoystick.getForwardBackwardValue());
+    m_weaponsController.getRightFB());
       
     if (m_TheJoystick.button7PressEvent()) {
       if (isFieldOriented) {
@@ -58,6 +59,27 @@ public class FRC2024TeleopDecisionMaker {
       m_Chassis.resetPigeon();
     }
 
+    if (m_weaponsController.rightBumperPressEvent()) {
+      m_Elevator.resetElevator();
+    }
+
+    if (m_weaponsController.buttonAPressEvent()) {
+      m_Elevator.trayCoral();
+    }
+
+    if(m_weaponsController.buttonBPressEvent()){
+      m_Elevator.lowCoral();
+    }
+
+    if (m_weaponsController.buttonXPressEvent()) {
+      m_Elevator.midCoral();
+    }
+
+    if (m_weaponsController.buttonYPressEvent()) {
+      m_Elevator.highCoral();
+    }
+
+    m_CoralHandler.moveCoral(m_weaponsController.getLeftFB());
 
     // m_AlgaeHandler.switchStop();
 
@@ -68,21 +90,21 @@ public class FRC2024TeleopDecisionMaker {
     //   m_AlgaeHandler.stop();
     // }
       
-    m_CoralHandler.switchStop();
+    // m_CoralHandler.switchStop();
 
-    if (m_TheWeaponsJoystick.triggerPressEvent()) {
-      if (m_Elevator.inPosition()) {
-        m_CoralHandler.moveCoral();
-      }
-    }
+    // if (m_TheWeaponsJoystick.triggerPressEvent()) {
+    //   if (m_Elevator.inPosition()) {
+    //     m_CoralHandler.moveCoral();
+    //   }
+    // }
 
-    if (m_TheWeaponsJoystick.triggerReleaseEvent()) {
-      m_CoralHandler.stop();
-    }
+    // if (m_TheWeaponsJoystick.triggerReleaseEvent()) {
+    //   m_CoralHandler.stop();
+    // }
 
-    if (m_TheWeaponsJoystick.button3PressEvent()) {
-      m_Elevator.fixedElevate();
-    }
+    // if (m_TheWeaponsJoystick.button3PressEvent()) {
+    //   m_Elevator.fixedElevate();
+    // }
 
     // m_AlgaeLifter.checkIfUp();
     // if (m_TheWeaponsJoystick.button5PressEvent()) {

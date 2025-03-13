@@ -55,16 +55,19 @@ public class Elevator extends RoboDevice{
     count = 4;
   }
 
-  private void midCoral(){
+  public void midCoral(){
     elevatorPID.setReference(MID_POS, ControlType.kPosition);
+    count = 3;
   }
 
-  private void lowCoral(){
+  public void lowCoral(){
     elevatorPID.setReference(LOW_POS, ControlType.kPosition);
+    count = 2;
   }
 
-  private void trayCoral(){
+  public void trayCoral(){
     elevatorPID.setReference(TRAY_POS, ControlType.kPosition);
+    count = 1;
   }
 
   public void resetElevator(){
@@ -117,7 +120,7 @@ public class Elevator extends RoboDevice{
   }
 
   public void elevate(double moveSpeed){
-    targPos += moveSpeed * 50;
+    targPos += moveSpeed * 10;
 
     elevatorPID.setReference(targPos, ControlType.kPosition);
   }

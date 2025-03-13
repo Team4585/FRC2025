@@ -25,11 +25,7 @@ public class CoralHandler extends RoboDevice{
   }
 
   public void moveCoral(){
-    if (holdingCoral) {
-      outtake();
-    }else{
-      intake();
-    }
+      move();
   }
 
   public void switchStop() {
@@ -41,19 +37,20 @@ public class CoralHandler extends RoboDevice{
     }
   }
 
+  public void moveCoral(double speed){
+    coralMotor.set(speed);
+  }
+
   
   public void stop(){
     stopMotor();
     holdingCoral = false;
   }
 
-  private void intake(){
+  private void move(){
     coralMotor.set(1);
   }
 
-  private void outtake(){
-    coralMotor.set(-1);
-  }
   
   private void stopMotor(){
     coralMotor.set(0);
