@@ -14,6 +14,10 @@ public class WeaponsXboxController extends HuskyXbox{
         return getAxisValue(AXIS_LEFT_Y);
     }
 
+    public double getRightTrigger(){
+        return getAxisValue(AXIS_RIGHT_TRIGGER);
+    }
+
     public double getRightFB(){
         return getAxisValue(AXIS_RIGHT_Y);
     }

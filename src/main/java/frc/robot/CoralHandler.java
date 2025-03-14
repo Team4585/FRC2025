@@ -38,7 +38,7 @@ public class CoralHandler extends RoboDevice{
   }
 
   public void moveCoral(double speed){
-    coralMotor.set(speed / 20);
+    coralMotor.set(speed);
   }
 
   

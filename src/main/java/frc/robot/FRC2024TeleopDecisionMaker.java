@@ -13,7 +13,7 @@ public class FRC2024TeleopDecisionMaker {
   // private AlgaeLifter m_AlgaeLifter;
 
   boolean slowDriving = false;
-  boolean isFieldOriented = false;
+  boolean isFieldOriented = true;
 
   FRC2024TeleopDecisionMaker(){
 
@@ -79,7 +79,7 @@ public class FRC2024TeleopDecisionMaker {
       m_Elevator.highCoral();
     }
 
-    m_CoralHandler.moveCoral(m_weaponsController.getLeftFB());
+    m_CoralHandler.moveCoral(m_weaponsController.getLeftFB() / 20 + m_weaponsController.getRightTrigger() / -5);
 
     SmartDashboard.putNumber("ElevEncoder: ", m_Elevator.targPos);
 

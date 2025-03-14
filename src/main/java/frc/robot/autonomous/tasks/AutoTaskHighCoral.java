@@ -34,7 +34,7 @@ public class AutoTaskHighCoral extends AutonomousTaskBase {
         if (m_Elevator.inPosition()) {
             m_Timer.start();
             m_CoralHandler.moveCoral();
-            if (m_Timer.hasElapsed(.5)) {
+            if (m_Timer.hasElapsed(0.01)) {
                 m_Timer.reset();
                 m_CoralHandler.stop();
                 return true;
