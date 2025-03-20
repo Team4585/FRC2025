@@ -55,12 +55,12 @@ public class RoboDevice {
     }
 
     public void doGatherInfo() {
-	    //    System.out.println("Do GatherInfo for " + getDeviceName());
+	    // System.out.println("Do GatherInfo for " + getDeviceName());
         doChildrenGatherInfo();
     }
 
     public void doActions() {
-	    //    System.out.println("Do Actions for " + getDeviceName());
+	    // System.out.println("Do Actions for " + getDeviceName());
         doChildrenActions();
     }
 

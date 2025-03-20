@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -93,7 +89,7 @@ public class Robot extends HuskyRobot {
     m_AutoDecider.doDecisions();
   }
 
-  /** This function is called periodically during autonomous. */
+  // Called periodically during autonomous.
   @Override
   public void autonomousPeriodic() {
     super.autonomousPeriodic();
@@ -108,7 +104,7 @@ public class Robot extends HuskyRobot {
     // }
   }
 
-  /** This function is called once when teleop is enabled. */
+  // Called once when teleop is enabled.
   @Override
   public void teleopInit() {
     super.teleopInit();
@@ -118,31 +114,31 @@ public class Robot extends HuskyRobot {
      m_TeleopDecider.doDecisions();
   }
 
-  /** This function is called periodically during operator control. */
+  // Called periodically during operator control.
   @Override
   public void teleopPeriodic() {
     super.teleopPeriodic();
   }
 
-  /** This function is called once when the robot is disabled. */
+  // Called once when the robot is disabled.
   @Override
   public void disabledInit() {
     super.disabledInit();
   }
 
-  /** This function is called periodically when disabled. */
+  // Called periodically when disabled.
   @Override
   public void disabledPeriodic() {
     super.disabledPeriodic();
   }
 
-  /** This function is called once when test mode is enabled. */
+  // Called once when test mode is enabled.
   @Override
   public void testInit() {
     super.testInit();
   }
 
-  /** This function is called periodically during test mode. */
+  // Called periodically during test mode.
   @Override
   public void testPeriodic() {
     super.testPeriodic();

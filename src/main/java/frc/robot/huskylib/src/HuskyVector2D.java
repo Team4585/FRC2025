@@ -83,7 +83,7 @@ public class HuskyVector2D {
 		return (getX() * OtherVec.getX()) + (getY() + OtherVec.getY());
 	}
 
-    // return the angle from the head of the vector to the head of the other vector
+    // Returns the angle from the head of the vector to the head of the other vector
     public double angleTo(HuskyVector2D OtherVec)
     {
         HuskyVector2D WorkVec = vectorTo(OtherVec);

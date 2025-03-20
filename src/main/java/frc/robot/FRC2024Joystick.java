@@ -35,9 +35,9 @@ public class FRC2024Joystick extends HuskyJoystick{
       }
     }
 
-    //if(RawVal != 0.0){
-    //  System.out.println("FBRawVal -> " + RawVal + "    FBRetVal -> " + RetVal);
-    //}
+    // if(RawVal != 0.0){
+    //   System.out.println("FBRawVal -> " + RawVal + "    FBRetVal -> " + RetVal);
+    // }
 
     return RetVal;
   }
@@ -56,9 +56,9 @@ public class FRC2024Joystick extends HuskyJoystick{
       }
     }
 
-    //if(RawVal != 0.0){
-    //  System.out.println("SSRawVal -> " + RawVal + "    SSRetVal -> " + RetVal);
-    //}
+    // if(RawVal != 0.0){
+    //   System.out.println("SSRawVal -> " + RawVal + "    SSRetVal -> " + RetVal);
+    // }
 
     return RetVal;
   }
@@ -76,9 +76,9 @@ public class FRC2024Joystick extends HuskyJoystick{
       }
     }
 
-    //if(RawVal != 0.0){
-    //  System.out.println("RotRawVal -> " + RawVal + "    RotRetVal -> " + RetVal);
-    //}
+    // if(RawVal != 0.0){
+    //   System.out.println("RotRawVal -> " + RawVal + "    RotRetVal -> " + RetVal);
+    // }
 
     return RetVal;
   }

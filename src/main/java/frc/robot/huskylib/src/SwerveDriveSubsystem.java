@@ -21,9 +21,11 @@ public class SwerveDriveSubsystem extends RoboDevice {
 
     private double pitch;
     private double roll;
-    //point where modules will counteract tipping (degrees)
+
+    // Point where modules will counteract tipping (degrees)
     private static final double TIP_POINT = 2;
     private static final double TIP_SPEED = .1;
+
     // Swerve Modules
     private SwerveModule frontLeft;
     private SwerveModule frontRight;

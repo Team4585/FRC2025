@@ -28,7 +28,7 @@ public abstract class HuskyRobot extends TimedRobot {
   abstract public void doTeleopDecisions();
   abstract public void doAutonomousDecisions();
 
-  /** This function is called periodically during autonomous. */
+  // This function is called periodically during autonomous.
   @Override
   public void autonomousPeriodic() {
     RoboDevice.doGatherInfoAll();
@@ -36,11 +36,11 @@ public abstract class HuskyRobot extends TimedRobot {
     RoboDevice.doActionsAll();
   }
 
-  /** This function is called once when teleop is enabled. */
+  // This function is called once when teleop is enabled.
   @Override
   public void teleopInit() {}
 
-  /** This function is called periodically during operator control. */
+  // This function is called periodically during operator control.
   @Override
   public void teleopPeriodic() {
     RoboDevice.doGatherInfoAll();
@@ -48,19 +48,19 @@ public abstract class HuskyRobot extends TimedRobot {
     RoboDevice.doActionsAll();
   }
 
-  /** This function is called once when the robot is disabled. */
+  // This function is called once when the robot is disabled.
   @Override
   public void disabledInit() {}
 
-  /** This function is called periodically when disabled. */
+  // This function is called periodically when disabled.
   @Override
   public void disabledPeriodic() {}
 
-  /** This function is called once when test mode is enabled. */
+  // This function is called once when test mode is enabled.
   @Override
   public void testInit() {}
 
-  /** This function is called periodically during test mode. */
+  // This function is called periodically during test mode.
   @Override
   public void testPeriodic() {}
 }

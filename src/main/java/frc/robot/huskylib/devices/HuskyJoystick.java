@@ -16,7 +16,6 @@ public class HuskyJoystick extends RoboDevice {
   protected static final double DEFAULT_FB_DEADZONE  = 0.13;
   protected static final double DEFAULT_ROT_DEADZONE = 0.13;
 
-
   //===========================================
 
   private class ButtonInfo{

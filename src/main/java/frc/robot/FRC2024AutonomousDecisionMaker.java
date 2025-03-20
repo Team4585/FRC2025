@@ -19,7 +19,7 @@ public class FRC2024AutonomousDecisionMaker {
   private CoralHandler m_CoralHandler;
 
   private AutoTaskDriveForward autoStartForward = new AutoTaskDriveForward(2, -0.2);
-  //private AutoTaskDriveForward autoMoveOutOfWay = new AutoTaskDriveForward(4.5, -.3);
+  // private AutoTaskDriveForward autoMoveOutOfWay = new AutoTaskDriveForward(4.5, -.3);
   private AutoTaskHighCoral autoCoral = new AutoTaskHighCoral();
   private AutoTaskResetElevator autoresetElevator = new AutoTaskResetElevator();
 
@@ -49,7 +49,7 @@ public class FRC2024AutonomousDecisionMaker {
       18. Drive forwards 1.2m
     */
 
-   //System.out.println("Initializing list");
+   // System.out.println("Initializing list");
    AutonomousTaskBase startTask = new AutoTaskStartSequence();
 
    m_TaskList = List.of(
@@ -66,7 +66,7 @@ public class FRC2024AutonomousDecisionMaker {
 
   public void doDecisions(){
     m_autoTaskDispatcher.RunAutoTask();
-    //System.out.println("Entering autonomous decisions");
+    // System.out.println("Entering autonomous decisions");
   }
 
   public void setChassis(FRC2024Chassis chassis){
