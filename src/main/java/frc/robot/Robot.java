@@ -85,7 +85,7 @@ public class Robot extends HuskyRobot {
     System.out.println("Auto selected: " + m_autoSelected);
   }
 
-  public void doAutonomousDecisions(){
+  public void doAutonomousDecisions() {
     m_AutoDecider.doDecisions();
   }
 
@@ -110,7 +110,7 @@ public class Robot extends HuskyRobot {
     super.teleopInit();
   }
 
-  public void doTeleopDecisions(){
+  public void doTeleopDecisions() {
      m_TeleopDecider.doDecisions();
   }
 

@@ -14,7 +14,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-class SwerveModule extends RoboDevice{
+class SwerveModule extends RoboDevice {
     // Constants
     private static final double WHEEL_DIAMETER = 0.0762; // 3 inches in meters
     private static final double DRIVE_GEAR_RATIO = 4.13;
@@ -37,10 +37,7 @@ class SwerveModule extends RoboDevice{
     private final boolean inversion;
     private final String moduleName;
 
-    public SwerveModule(int driveMotorId,
-    int steerMotorId,
-     Boolean inversion,
-     String moduleName) {
+    public SwerveModule(int driveMotorId, int steerMotorId, Boolean inversion, String moduleName) {
         super("Swerve Module");
         this.moduleName = moduleName;
         this.driveMotorId = driveMotorId;
@@ -48,15 +45,16 @@ class SwerveModule extends RoboDevice{
         this.inversion = inversion;
     }
 
-    public void Initialize(){
+    public void Initialize() {
         // Configure drive motor
         driveMotor = new SparkMax(driveMotorId, MotorType.kBrushless);
         driveConfig = new SparkMaxConfig();
         driveEncoder = driveMotor.getEncoder();
 
-        driveConfig.closedLoop.pid(0.01, 0, 0)
-                            .maxOutput(1)
-                            .minOutput(-1);
+        driveConfig.closedLoop
+                .pid(0.01, 0, 0)
+                .maxOutput(1)
+                .minOutput(-1);
 
         // Configure steering motor
         steerMotor = new SparkMax(steerMotorId, MotorType.kBrushless);
@@ -73,11 +71,11 @@ class SwerveModule extends RoboDevice{
         double driveConversionFactor = (Math.PI * WHEEL_DIAMETER) / DRIVE_GEAR_RATIO;
         driveConfig.inverted(inversion);
         driveConfig.encoder.positionConversionFactor(driveConversionFactor);
-        driveConfig.encoder.velocityConversionFactor(driveConversionFactor/60.0);
+        driveConfig.encoder.velocityConversionFactor(driveConversionFactor / 60.0);
 
         double steerConversionFactor = 360.0 / STEER_GEAR_RATIO;
         steerConfig.encoder.positionConversionFactor(steerConversionFactor);
-        steerConfig.encoder.velocityConversionFactor(steerConversionFactor/60.0);
+        steerConfig.encoder.velocityConversionFactor(steerConversionFactor / 60.0);
 
         // Save configurations
         driveMotor.configure(driveConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
@@ -94,7 +92,7 @@ class SwerveModule extends RoboDevice{
         );
     }
 
-    public double getDrivePos(){
+    public double getDrivePos() {
         return driveEncoder.getPosition();
     }
 
@@ -113,8 +111,7 @@ class SwerveModule extends RoboDevice{
         // Set steering angle
         steerPid.setReference(
                 state.angle.getDegrees(),
-                SparkMax.ControlType.kPosition
-        );
+                SparkMax.ControlType.kPosition);
 
         // Optional: Add telemetry
         SmartDashboard.putNumber(moduleName + " Target Angle", state.angle.getDegrees());

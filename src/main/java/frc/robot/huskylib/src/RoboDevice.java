@@ -16,75 +16,75 @@ public class RoboDevice {
         RoboDevice.addPart(this);
     }
 
-    public RoboDevice AddChildDevice(RoboDevice newChild){
+    public RoboDevice AddChildDevice(RoboDevice newChild) {
         RoboDevice.removePart(newChild);
         m_ChildDevices.add(newChild);
         return newChild;
     }
 
-    private void doChildrenGatherInfo(){
+    private void doChildrenGatherInfo() {
         for (RoboDevice Child : m_ChildDevices) {
             Child.doGatherInfo();
         }
     }
 
-    private void doChildrenActions(){
+    private void doChildrenActions() {
         for (RoboDevice Child : m_ChildDevices) {
             Child.doActions();
         }
     }
 
-    private void doChildrenTeleopInit(){
+    private void doChildrenTeleopInit() {
         for (RoboDevice Child : m_ChildDevices) {
             Child.doTeleopInit();
         }
     }
 
-    private void doChildrenAutonomousInit(){
+    private void doChildrenAutonomousInit() {
         for (RoboDevice Child : m_ChildDevices) {
             Child.doAutonomousInit();
         }
     }
 
-    public void doTeleopInit(){
+    public void doTeleopInit() {
         doChildrenTeleopInit();
     }
 
-    public void doAutonomousInit(){
+    public void doAutonomousInit() {
         doChildrenAutonomousInit();
     }
 
     public void doGatherInfo() {
-	    // System.out.println("Do GatherInfo for " + getDeviceName());
+        // System.out.println("Do GatherInfo for " + getDeviceName());
         doChildrenGatherInfo();
     }
 
     public void doActions() {
-	    // System.out.println("Do Actions for " + getDeviceName());
+        // System.out.println("Do Actions for " + getDeviceName());
         doChildrenActions();
     }
 
-    public String getDeviceName(){
+    public String getDeviceName() {
         return m_deviceName;
     }
 
-    public Boolean debugModeOn(){
+    public Boolean debugModeOn() {
         return m_debugModeOn;
     }
 
-    public void setDebugModeOn(){
+    public void setDebugModeOn() {
         m_debugModeOn = true;
     }
 
-    public void setDebugModeOff(){
+    public void setDebugModeOff() {
         m_debugModeOn = false;
     }
 
-    public void toggleDebugMode(){
+    public void toggleDebugMode() {
         m_debugModeOn = !m_debugModeOn;
     }
 
-    //================================================================================
+    // ================================================================================
 
     public static void addPart(RoboDevice e) {
         RoboDevice.m_allParts.add(e);
@@ -109,5 +109,5 @@ public class RoboDevice {
             r.doActions();
         }
     }
-    //================================================================================
+    // ================================================================================
 }

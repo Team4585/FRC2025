@@ -15,7 +15,7 @@ public class ReallyBasicPID {
         this.dt = dt;
     }
 
-    public double calculatePID(double target, double measuredOutput){
+    public double calculatePID(double target, double measuredOutput) {
         double error;
         double integral;
         double derivative;

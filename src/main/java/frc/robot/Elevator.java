@@ -12,7 +12,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.huskylib.src.RoboDevice;
 
-public class Elevator extends RoboDevice{
+public class Elevator extends RoboDevice {
   private SparkMax elevatorMotor;
   private RelativeEncoder elevatorEncoder;
   private SparkClosedLoopController elevatorPID;
@@ -30,11 +30,11 @@ public class Elevator extends RoboDevice{
 
   private int count = 0;
 
-  public Elevator(){
+  public Elevator() {
     super("Elevator");
   }
 
-  public void Initialize(){
+  public void Initialize() {
     elevatorMotor = new SparkMax(WiringConnections.ELEVATOR_MOTOR, MotorType.kBrushless);
     elevatorEncoder = elevatorMotor.getEncoder();
     elevatorPID = elevatorMotor.getClosedLoopController();
@@ -51,61 +51,66 @@ public class Elevator extends RoboDevice{
     elevatorMotor.configure(elevatorConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  public void highCoral(){
+  public void highCoral() {
     targPos = initialPos + HIGH_POS;
     elevate(0.2, 0);
     // elevatorPID.setReference(initialPos + HIGH_POS, ControlType.kPosition);
     count = 4;
   }
 
-  public void midCoral(){
+  public void midCoral() {
     targPos = initialPos + MID_POS;
     elevate(0.2, 0);
     // elevatorPID.setReference(initialPos + MID_POS, ControlType.kPosition);
     count = 3;
   }
 
-  public void lowCoral(){
+  public void lowCoral() {
     targPos = initialPos + LOW_POS;
     elevate(0.2, 0);
     // elevatorPID.setReference(initialPos + LOW_POS, ControlType.kPosition);
     count = 2;
   }
 
-  public void trayCoral(){
+  public void trayCoral() {
     targPos = initialPos + TRAY_POS;
     elevate(0.2, 0);
     // elevatorPID.setReference(initialPos + TRAY_POS, ControlType.kPosition);
     count = 1;
   }
 
-  public void resetElevator(){
+  public void resetElevator() {
     targPos = initialPos + RESET_POS;
     elevate(0.2, 0);
     // elevatorPID.setReference(initialPos + RESET_POS, ControlType.kPosition);
     count = 0;
   }
 
-  public boolean inPosition(){
+  public boolean inPosition() {
     return (elevatorEncoder.getPosition() - targPos) >= encoderDeadzone;
-    /*
-    switch (count) {
-      case 1:
-        return (elevatorEncoder.getPosition() - initialPos + TRAY_POS) >= encoderDeadzone;
-      case 2:
-        return (elevatorEncoder.getPosition() - initialPos + LOW_POS) >= encoderDeadzone;
-      case 3:
-        return (elevatorEncoder.getPosition() - initialPos + MID_POS) >= encoderDeadzone;
-      case 4:
-        return (elevatorEncoder.getPosition() - initialPos + HIGH_POS) >= encoderDeadzone;
-      case 5:
-        return (elevatorEncoder.getPosition() - initialPos + RESET_POS) >= encoderDeadzone;
-      default:
-        return false;
-    }*/
+
+    // switch (count) {
+    // case 1:
+    // return (elevatorEncoder.getPosition() - initialPos + TRAY_POS) >=
+    // encoderDeadzone;
+    // case 2:
+    // return (elevatorEncoder.getPosition() - initialPos + LOW_POS) >=
+    // encoderDeadzone;
+    // case 3:
+    // return (elevatorEncoder.getPosition() - initialPos + MID_POS) >=
+    // encoderDeadzone;
+    // case 4:
+    // return (elevatorEncoder.getPosition() - initialPos + HIGH_POS) >=
+    // encoderDeadzone;
+    // case 5:
+    // return (elevatorEncoder.getPosition() - initialPos + RESET_POS) >=
+    // encoderDeadzone;
+    // default:
+    // return false;
+    // }
   }
 
-  public void fixedElevate(){
+  public void fixedElevate() {
     count++;
 
     switch (count) {

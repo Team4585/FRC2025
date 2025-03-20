@@ -6,31 +6,32 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.huskylib.src.RoboDevice;
 
-public class AlgaeHandler extends RoboDevice{
+public class AlgaeHandler extends RoboDevice {
 
   private VictorSPX algaeMotor;
   private DigitalInput algaeSensor;
 
   private boolean holdingAlgae;
-  public AlgaeHandler(){
+
+  public AlgaeHandler() {
     super("Algae Handler");
   }
 
-  public void Initialize(){
+  public void Initialize() {
     algaeMotor = new VictorSPX(WiringConnections.ALGAE_CIM);
     algaeSensor = new DigitalInput(WiringConnections.ALGAE_SWITCH_DIO);
     holdingAlgae = false;
   }
 
-  public void moveAlgae(){
+  public void moveAlgae() {
     if (holdingAlgae) {
       unSuck();
-    }else{
+    } else {
       suck();
     }
   }
 
-  public void switchStop(){
+  public void switchStop() {
     if (!algaeSensor.get()) {
       if (!holdingAlgae) {
         stop();
@@ -39,30 +40,30 @@ public class AlgaeHandler extends RoboDevice{
     }
   }
 
-  public void idle(){
+  public void idle() {
     if (holdingAlgae) {
       holdingAlgae = false;
       stop();
-    }else{
+    } else {
       holdingAlgae = true;
       stop();
     }
   }
 
-  public void suck(){
+  public void suck() {
     algaeMotor.set(ControlMode.PercentOutput, 1);
   }
 
-  public void unSuck(){
+  public void unSuck() {
     algaeMotor.set(ControlMode.PercentOutput, -1);
   }
 
-  public void stop(){
+  public void stop() {
     algaeMotor.set(ControlMode.PercentOutput, 0);
     holdingAlgae = false;
   }
 
-  public void keepAlgea(){
+  public void keepAlgea() {
     algaeMotor.set(ControlMode.PercentOutput, .05);
   }
 

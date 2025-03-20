@@ -4,7 +4,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FRC2024TeleopDecisionMaker {
   private final FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
-  // private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new FRC2024WeaponsJoystick();
+  // private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new
+  // FRC2024WeaponsJoystick();
   // private AlgaeHandler m_AlgaeHandler;
   private final WeaponsXboxController m_weaponsController = new WeaponsXboxController(1);
   private CoralHandler m_CoralHandler;
@@ -15,31 +16,31 @@ public class FRC2024TeleopDecisionMaker {
   boolean slowDriving = false;
   boolean isFieldOriented = true;
 
-  FRC2024TeleopDecisionMaker(){}
+  FRC2024TeleopDecisionMaker() {
+  }
 
-  public void initialize(){}
+  public void initialize() {
+  }
 
-  public void doDecisions(){
+  public void doDecisions() {
     if (slowDriving) {
       m_Chassis.setTargSpeed(
-        (m_TheJoystick.getForwardBackwardValue()/4),
-        -(m_TheJoystick.getSideToSideValue()/4),
-        -m_TheJoystick.getTwistValue(),
-        isFieldOriented
-      );
+          (m_TheJoystick.getForwardBackwardValue() / 4),
+          -(m_TheJoystick.getSideToSideValue() / 4),
+          -m_TheJoystick.getTwistValue(),
+          isFieldOriented);
     }
 
     if (!slowDriving) {
       m_Chassis.setTargSpeed(
-        m_TheJoystick.getForwardBackwardValue(),
-        -m_TheJoystick.getSideToSideValue(),
-        -m_TheJoystick.getTwistValue(),
-        isFieldOriented
-      );
+          m_TheJoystick.getForwardBackwardValue(),
+          -m_TheJoystick.getSideToSideValue(),
+          -m_TheJoystick.getTwistValue(),
+          isFieldOriented);
     }
 
     if (m_TheJoystick.button8PressEvent()) {
-      slowDriving= !slowDriving;
+      slowDriving = !slowDriving;
     }
 
     m_Chassis.stabilize(isFieldOriented);
@@ -49,7 +50,7 @@ public class FRC2024TeleopDecisionMaker {
     if (m_TheJoystick.button7PressEvent()) {
       if (isFieldOriented) {
         isFieldOriented = false;
-      }else{
+      } else {
         isFieldOriented = true;
       }
     }
@@ -66,7 +67,7 @@ public class FRC2024TeleopDecisionMaker {
       m_Elevator.trayCoral();
     }
 
-    if(m_weaponsController.buttonBPressEvent()){
+    if (m_weaponsController.buttonBPressEvent()) {
       m_Elevator.lowCoral();
     }
 
@@ -85,51 +86,51 @@ public class FRC2024TeleopDecisionMaker {
     // m_AlgaeHandler.switchStop();
 
     // if (m_TheWeaponsJoystick.button2PressEvent()) {
-    //   m_AlgaeHandler.moveAlgae();
+    // m_AlgaeHandler.moveAlgae();
     // }
     // if (m_TheWeaponsJoystick.button2ReleaseEvent()) {
-    //   m_AlgaeHandler.stop();
+    // m_AlgaeHandler.stop();
     // }
 
     // m_CoralHandler.switchStop();
 
     // if (m_TheWeaponsJoystick.triggerPressEvent()) {
-    //   if (m_Elevator.inPosition()) {
-    //     m_CoralHandler.moveCoral();
-    //   }
+    // if (m_Elevator.inPosition()) {
+    // m_CoralHandler.moveCoral();
+    // }
     // }
 
     // if (m_TheWeaponsJoystick.triggerReleaseEvent()) {
-    //   m_CoralHandler.stop();
+    // m_CoralHandler.stop();
     // }
 
     // if (m_TheWeaponsJoystick.button3PressEvent()) {
-    //   m_Elevator.fixedElevate();
+    // m_Elevator.fixedElevate();
     // }
 
     // m_AlgaeLifter.checkIfUp();
     // if (m_TheWeaponsJoystick.button5PressEvent()) {
-    //   m_AlgaeLifter.move();
+    // m_AlgaeLifter.move();
     // }
   }
 
-  public void setChassis(FRC2024Chassis theChassis){
+  public void setChassis(FRC2024Chassis theChassis) {
     m_Chassis = theChassis;
   }
 
   // public void setAlgaeHandler(AlgaeHandler theHandler){
-  //   m_AlgaeHandler = theHandler;
+  // m_AlgaeHandler = theHandler;
   // }
 
-  public void setCoralHandler(CoralHandler coralHandler){
+  public void setCoralHandler(CoralHandler coralHandler) {
     m_CoralHandler = coralHandler;
   }
 
-  public void setElevator(Elevator elevator){
+  public void setElevator(Elevator elevator) {
     m_Elevator = elevator;
   }
 
   // public void setAlgaeLifter(AlgaeLifter lifter){
-  //   m_AlgaeLifter = lifter;
+  // m_AlgaeLifter = lifter;
   // }
 }

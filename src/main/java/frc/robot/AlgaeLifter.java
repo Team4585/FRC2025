@@ -10,7 +10,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import frc.robot.huskylib.src.RoboDevice;
 
-public class AlgaeLifter extends RoboDevice{
+public class AlgaeLifter extends RoboDevice {
   private SparkMax algaeLifterMotor;
   private SparkMaxConfig algaeLifterConfig;
   private SparkClosedLoopController algaeLifterPID;
@@ -19,11 +19,11 @@ public class AlgaeLifter extends RoboDevice{
   private final double DEPLOYED_POS = 5;
   private boolean isUp;
 
-  public AlgaeLifter(){
+  public AlgaeLifter() {
     super("Algae Handler");
   }
 
-  public void Initialize(){
+  public void Initialize() {
     algaeLifterMotor = new SparkMax(14, MotorType.kBrushless);
     algaeLifterConfig = new SparkMaxConfig();
     algaeLifterPID = algaeLifterMotor.getClosedLoopController();
@@ -31,18 +31,18 @@ public class AlgaeLifter extends RoboDevice{
 
     isUp = true;
 
-    algaeLifterConfig.closedLoop.pid(.01,0,0)
-    .maxOutput(1)
-    .minOutput(-1);
+    algaeLifterConfig.closedLoop.pid(.01, 0, 0)
+        .maxOutput(1)
+        .minOutput(-1);
 
     algaeLifterMotor.configure(algaeLifterConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  public void reelIn(){
+  public void reelIn() {
     algaeLifterPID.setReference(0, ControlType.kPosition);
   }
 
-  public void checkIfUp(){
+  public void checkIfUp() {
     if (algaeLifterEncoder.getPosition() == 0) {
       isUp = true;
     }
@@ -51,15 +51,14 @@ public class AlgaeLifter extends RoboDevice{
     }
   }
 
-  public void deploy(){
+  public void deploy() {
     algaeLifterPID.setReference(DEPLOYED_POS, ControlType.kPosition);
   }
 
-  public void move(){
+  public void move() {
     if (isUp) {
       deploy();
-    }
-    else{
+    } else {
       reelIn();
     }
   }
