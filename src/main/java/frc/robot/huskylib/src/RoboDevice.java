@@ -3,11 +3,11 @@ package frc.robot.huskylib.src;
 import java.util.ArrayList;
 
 public class RoboDevice {
-    private static ArrayList<RoboDevice> m_allParts = new ArrayList<RoboDevice>();
+    private static final ArrayList<RoboDevice> m_allParts = new ArrayList<RoboDevice>();
 
     private Boolean m_debugModeOn = false;
     private String m_deviceName = "";
-    private ArrayList<RoboDevice> m_ChildDevices;
+    private final ArrayList<RoboDevice> m_ChildDevices;
 
     public RoboDevice(String deviceName) {
         m_deviceName = deviceName;

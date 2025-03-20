@@ -11,17 +11,17 @@ import frc.robot.autonomous.tasks.AutoTaskResetElevator;
 import frc.robot.autonomous.tasks.AutoTaskStartSequence;
 
 public class FRC2024AutonomousDecisionMaker {
-  private List<AutonomousTaskBase> m_TaskList;
-  private AutonomousTaskDispatcher m_autoTaskDispatcher;
+  private final List<AutonomousTaskBase> m_TaskList;
+  private final AutonomousTaskDispatcher m_autoTaskDispatcher;
 
   private FRC2024Chassis m_Chassis;
   private Elevator m_Elevator;
   private CoralHandler m_CoralHandler;
 
-  private AutoTaskDriveForward autoStartForward = new AutoTaskDriveForward(2, -0.2);
+  private final AutoTaskDriveForward autoStartForward = new AutoTaskDriveForward(2, -0.2);
   // private AutoTaskDriveForward autoMoveOutOfWay = new AutoTaskDriveForward(4.5, -.3);
-  private AutoTaskHighCoral autoCoral = new AutoTaskHighCoral();
-  private AutoTaskResetElevator autoresetElevator = new AutoTaskResetElevator();
+  private final AutoTaskHighCoral autoCoral = new AutoTaskHighCoral();
+  private final AutoTaskResetElevator autoresetElevator = new AutoTaskResetElevator();
 
   // Auto initialization
   FRC2024AutonomousDecisionMaker(){

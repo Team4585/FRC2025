@@ -3,11 +3,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FRC2024TeleopDecisionMaker {
-  private FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
+  private final FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
   // private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new FRC2024WeaponsJoystick();
   // private AlgaeHandler m_AlgaeHandler;
+  private final WeaponsXboxController m_weaponsController = new WeaponsXboxController(1);
   private CoralHandler m_CoralHandler;
-  private WeaponsXboxController m_weaponsController = new WeaponsXboxController(1);
   private Elevator m_Elevator;
   private FRC2024Chassis m_Chassis;
   // private AlgaeLifter m_AlgaeLifter;

@@ -20,7 +20,7 @@ public class Elevator extends RoboDevice{
 
   public double targPos;
   private double initialPos;
-  private double encoderDeadzone = 0.1;
+  private final double encoderDeadzone = 0.1;
   // Todo: set correct positions
   private final double HIGH_POS = 10.2;
   private final double MID_POS = 5.5;

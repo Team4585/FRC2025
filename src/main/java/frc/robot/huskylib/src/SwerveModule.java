@@ -32,10 +32,10 @@ class SwerveModule extends RoboDevice{
 
     private SparkClosedLoopController steerPid;
 
-    private int driveMotorId;
-    private int steerMotorId;
-    private boolean inversion;
-    private String moduleName;
+    private final int driveMotorId;
+    private final int steerMotorId;
+    private final boolean inversion;
+    private final String moduleName;
 
     public SwerveModule(int driveMotorId,
     int steerMotorId,

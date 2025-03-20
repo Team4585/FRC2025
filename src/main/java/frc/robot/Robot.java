@@ -16,14 +16,14 @@ public class Robot extends HuskyRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private FRC2024TeleopDecisionMaker m_TeleopDecider = new FRC2024TeleopDecisionMaker();
-  private FRC2024AutonomousDecisionMaker m_AutoDecider = new FRC2024AutonomousDecisionMaker();
+  private final FRC2024TeleopDecisionMaker m_TeleopDecider = new FRC2024TeleopDecisionMaker();
+  private final FRC2024AutonomousDecisionMaker m_AutoDecider = new FRC2024AutonomousDecisionMaker();
 
-  private FRC2024Chassis m_TheChassis = new FRC2024Chassis();
+  private final FRC2024Chassis m_TheChassis = new FRC2024Chassis();
 
   // private AlgaeHandler m_AlgaeHandler = new AlgaeHandler();
-  private CoralHandler m_CoralHandler = new CoralHandler();
-  private Elevator m_Elevator = new Elevator();
+  private final CoralHandler m_CoralHandler = new CoralHandler();
+  private final Elevator m_Elevator = new Elevator();
   // private AlgaeLifter m_AlgaeLifter = new AlgaeLifter();
   /**
    * This function is run when the robot is first started up and should be used for any

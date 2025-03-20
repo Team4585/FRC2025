@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.RobotController;
 // The ThriftyEncoder class contains fields and methods pertaining to the function of the absolute encoder.
 public class ThriftyEncoder
 {
-	private AnalogInput analogInput;
+	private final AnalogInput analogInput;
 	private boolean inverted;
 	private double positionOffset;
 
