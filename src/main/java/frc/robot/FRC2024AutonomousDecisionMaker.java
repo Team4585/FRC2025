@@ -24,10 +24,9 @@ public class FRC2024AutonomousDecisionMaker {
   private AutoTaskResetElevator autoresetElevator = new AutoTaskResetElevator();
 
   // Auto initialization
-
   FRC2024AutonomousDecisionMaker(){
    // m_TaskList = List.of(new AutoTaskTickCount(25), new AutoTaskHalt());
-    
+
    /**
     * Wheeeeeeeeeee auto logic:
     * 1. Set shooter speed
@@ -49,7 +48,6 @@ public class FRC2024AutonomousDecisionMaker {
       17. Set intake off
       18. Drive forwards 1.2m
     */
-    
 
    //System.out.println("Initializing list");
    AutonomousTaskBase startTask = new AutoTaskStartSequence();
@@ -60,7 +58,6 @@ public class FRC2024AutonomousDecisionMaker {
    );
 
     m_autoTaskDispatcher = new AutonomousTaskDispatcher(m_TaskList);
-
   }
 
   public void initialize(){
@@ -75,22 +72,17 @@ public class FRC2024AutonomousDecisionMaker {
   public void setChassis(FRC2024Chassis chassis){
     m_Chassis = chassis;
     autoStartForward.setChassis(m_Chassis);
-
   }
 
 
   public void setCoralHandler(CoralHandler handler){
     m_CoralHandler = handler;
-
     autoCoral.setCoralHandler(m_CoralHandler);
   }
 
   public void setElevator(Elevator elevator){
     m_Elevator = elevator;
-
     autoCoral.setElevator(m_Elevator);
     autoresetElevator.setElevator(m_Elevator);
   }
-
-
 }

@@ -3,9 +3,6 @@ package frc.robot;
 import frc.robot.huskylib.devices.HuskyXbox;
 
 public class WeaponsXboxController extends HuskyXbox{
-
-
-
     public WeaponsXboxController(int port){
         super(port);
     }
@@ -53,6 +50,4 @@ public class WeaponsXboxController extends HuskyXbox{
     public boolean menuPressEvent(){
         return buttonPressEvent(7);
     }
-
 }
-

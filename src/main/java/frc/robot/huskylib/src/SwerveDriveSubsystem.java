@@ -40,35 +40,34 @@ public class SwerveDriveSubsystem extends RoboDevice {
     // Kinematics and Odometry
     private  SwerveDriveKinematics kinematics;
     private SwerveDriveOdometry odometry;
-//x    private final SwerveDriveOdometry odometry;
+    //x private final SwerveDriveOdometry odometry;
 
     public SwerveDriveSubsystem() {
         super("Swerve Drive Subsystem");
-
     }
 
     public void Initialize(){
         // Initialize swerve modules
-        frontLeft = new SwerveModule(WiringConnections.FRONT_LEFT_DRIVE_MOTOR_ID, 
-            WiringConnections.FRONT_LEFT_STEER_MOTOR_ID, true, 
+        frontLeft = new SwerveModule(WiringConnections.FRONT_LEFT_DRIVE_MOTOR_ID,
+            WiringConnections.FRONT_LEFT_STEER_MOTOR_ID, true,
             "Front Left");
         frontLeft.Initialize();
 
-        frontRight = new SwerveModule(WiringConnections.FRONT_RIGHT_DRIVE_MOTOR_ID, 
+        frontRight = new SwerveModule(WiringConnections.FRONT_RIGHT_DRIVE_MOTOR_ID,
             WiringConnections.FRONT_RIGHT_STEER_MOTOR_ID, false,
             "Front Right");
         frontRight.Initialize();
 
-        backLeft = new SwerveModule(WiringConnections.BACK_LEFT_DRIVE_MOTOR_ID, 
-            WiringConnections.BACK_LEFT_STEER_MOTOR_ID, true, 
+        backLeft = new SwerveModule(WiringConnections.BACK_LEFT_DRIVE_MOTOR_ID,
+            WiringConnections.BACK_LEFT_STEER_MOTOR_ID, true,
             "Back Left");
         backLeft.Initialize();
 
-        backRight = new SwerveModule(WiringConnections.BACK_RIGHT_DRIVE_MOTOR_ID, 
-            WiringConnections.BACK_RIGHT_STEER_MOTOR_ID, false, 
+        backRight = new SwerveModule(WiringConnections.BACK_RIGHT_DRIVE_MOTOR_ID,
+            WiringConnections.BACK_RIGHT_STEER_MOTOR_ID, false,
             "Back Right");
         backRight.Initialize();
-        
+
         // Initialize Pigeon IMU
         pigeon = new Pigeon2(WiringConnections.PIGEON_CAN_ID);
         pigeon.setYaw(0); // Reset yaw to 0
@@ -100,15 +99,15 @@ public class SwerveDriveSubsystem extends RoboDevice {
     public void drive(double xSpeed, double ySpeed, double rotationSpeed, boolean fieldRelative) {
         // Get current module states
         SwerveModuleState[] states = kinematics.toSwerveModuleStates(
-            fieldRelative 
-                ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rotationSpeed, 
+            fieldRelative
+                ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rotationSpeed,
                     Rotation2d.fromDegrees(pigeon.getYaw().getValue().magnitude()))
                 : new ChassisSpeeds(xSpeed, ySpeed, rotationSpeed)
         );
-    
+
         // Normalize wheel speeds
         SwerveDriveKinematics.desaturateWheelSpeeds(states, MAX_SPEED);
-    
+
         // Set states to each module
         frontLeft.setDesiredState(states[0]);
         frontRight.setDesiredState(states[1]);
@@ -124,7 +123,7 @@ public class SwerveDriveSubsystem extends RoboDevice {
             drive(0, -TIP_SPEED, 0, false);
         }if (pitch > TIP_POINT) {
             drive(0, TIP_SPEED, 0, false);
-        }if (roll < -TIP_POINT) { 
+        }if (roll < -TIP_POINT) {
             drive(-TIP_SPEED, 0, 0, false);
         }if (roll > TIP_POINT) {
             drive(TIP_SPEED, 0, 0, false);
@@ -158,11 +157,7 @@ public class SwerveDriveSubsystem extends RoboDevice {
 
     public void switchRelativity(){
         boolean driverOriented = true;
-        if(driverOriented){
-
-        }else{
-            
-        }
+        if(driverOriented){} else {}
     }
 
     private void updateSmartDashboard() {

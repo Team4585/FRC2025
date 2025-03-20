@@ -27,7 +27,6 @@ class SwerveModule extends RoboDevice{
     private SparkMaxConfig driveConfig;
     private SparkMaxConfig steerConfig;
 
-
     private RelativeEncoder driveEncoder;
     private RelativeEncoder steerEncoder;
 
@@ -38,22 +37,18 @@ class SwerveModule extends RoboDevice{
     private boolean inversion;
     private String moduleName;
 
-    public SwerveModule(int driveMotorId, 
+    public SwerveModule(int driveMotorId,
     int steerMotorId,
-     Boolean inversion, 
+     Boolean inversion,
      String moduleName) {
-    
         super("Swerve Module");
         this.moduleName = moduleName;
         this.driveMotorId = driveMotorId;
         this.steerMotorId = steerMotorId;
         this.inversion = inversion;
-
     }
 
     public void Initialize(){
-
-
         // Configure drive motor
         driveMotor = new SparkMax(driveMotorId, MotorType.kBrushless);
         driveConfig = new SparkMaxConfig();
@@ -69,12 +64,10 @@ class SwerveModule extends RoboDevice{
         steerEncoder = steerMotor.getEncoder();
         steerPid = steerMotor.getClosedLoopController();
 
-        
         // Configure PID
         steerConfig.closedLoop.pid(0.01, 0.0, 0.0);
         steerConfig.closedLoop.maxOutput(1);
         steerConfig.closedLoop.minOutput(-1);
-        
 
         // Set conversion factors
         double driveConversionFactor = (Math.PI * WHEEL_DIAMETER) / DRIVE_GEAR_RATIO;
@@ -85,8 +78,6 @@ class SwerveModule extends RoboDevice{
         double steerConversionFactor = 360.0 / STEER_GEAR_RATIO;
         steerConfig.encoder.positionConversionFactor(steerConversionFactor);
         steerConfig.encoder.velocityConversionFactor(steerConversionFactor/60.0);
-
-        
 
         // Save configurations
         driveMotor.configure(driveConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
@@ -112,19 +103,19 @@ class SwerveModule extends RoboDevice{
         SwerveModuleState state = new SwerveModuleState();
         state.speedMetersPerSecond = desiredState.speedMetersPerSecond;
         state.angle = desiredState.angle;
-        
+
         // Call optimize on the instance
         state.optimize(Rotation2d.fromDegrees(steerEncoder.getPosition()));
-    
+
         // Set drive speed
         driveMotor.set(state.speedMetersPerSecond);
-        
+
         // Set steering angle
         steerPid.setReference(
                 state.angle.getDegrees(),
                 SparkMax.ControlType.kPosition
         );
-    
+
         // Optional: Add telemetry
         SmartDashboard.putNumber(moduleName + " Target Angle", state.angle.getDegrees());
         SmartDashboard.putNumber(moduleName + " Current Angle", steerEncoder.getPosition());

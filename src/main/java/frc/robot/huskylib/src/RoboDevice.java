@@ -14,7 +14,7 @@ public class RoboDevice {
         m_ChildDevices = new ArrayList<RoboDevice>();
 
         RoboDevice.addPart(this);
-    }   
+    }
 
     public RoboDevice AddChildDevice(RoboDevice newChild){
         RoboDevice.removePart(newChild);
@@ -109,7 +109,5 @@ public class RoboDevice {
             r.doActions();
         }
     }
-
     //================================================================================
-
 }

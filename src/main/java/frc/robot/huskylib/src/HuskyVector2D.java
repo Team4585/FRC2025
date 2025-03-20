@@ -1,7 +1,6 @@
 package frc.robot.huskylib.src;
 
 public class HuskyVector2D {
-
     private double m_x;
     private double m_y;
     private double m_equalTreshold = 0.0;
@@ -22,7 +21,6 @@ public class HuskyVector2D {
         m_x = Orig.getX();
         m_y = Orig.getY();
     }
-
 
     public double getX() { return m_x; }
     public void setX(double NewX) { m_x = NewX; }

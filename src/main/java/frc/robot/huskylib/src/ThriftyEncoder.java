@@ -32,16 +32,16 @@ public class ThriftyEncoder
 
 	/**
 	 * Inverts the absolute encoder.
-	 * 
+	 *
 	 * @param inverted flag indicating if inverted.
 	 */
 	public void setInverted(boolean inverted) {
-		this.inverted = inverted;       
+		this.inverted = inverted;
 	}
 
 	/**
 	 * Sets the position offset between the raw position and the virtual position.
-	 * 
+	 *
 	 * @param offset offset in radians
 	 */
 	public void setPositionOffset(double offset) {
@@ -72,5 +72,4 @@ public class ThriftyEncoder
 	public void resetVirtualPosition() {
 		positionOffset = getPosition();
 	}
-
 }

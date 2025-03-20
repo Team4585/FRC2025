@@ -12,9 +12,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.huskylib.src.RoboDevice;
 
-
 public class Elevator extends RoboDevice{
-
   private SparkMax elevatorMotor;
   private RelativeEncoder elevatorEncoder;
   private SparkClosedLoopController elevatorPID;
@@ -23,13 +21,12 @@ public class Elevator extends RoboDevice{
   public double targPos;
   private double initialPos;
   private double encoderDeadzone = 0.1;
-//TODO set correct positions
+  // TODO set correct positions
   private final double HIGH_POS = 10.2;
   private final double MID_POS = 5.5;
   private final double LOW_POS = 2.45;
   private final double TRAY_POS = 1;
   private final double RESET_POS = 0.1;
-
 
   private int count = 0;
 
@@ -45,8 +42,8 @@ public class Elevator extends RoboDevice{
 
     targPos = elevatorEncoder.getPosition();
     initialPos = elevatorEncoder.getPosition();
-    //targPos += 50;
-    
+    // targPos += 50;
+
     elevatorConfig.closedLoop.pid(0.8, 0, 0.45);
     elevatorConfig.closedLoop.maxOutput(0.75);
     elevatorConfig.closedLoop.minOutput(-0.75);
@@ -57,41 +54,40 @@ public class Elevator extends RoboDevice{
   public void highCoral(){
     targPos = initialPos + HIGH_POS;
     elevate(0.2, 0);
-    //elevatorPID.setReference(initialPos + HIGH_POS, ControlType.kPosition);
+    // elevatorPID.setReference(initialPos + HIGH_POS, ControlType.kPosition);
     count = 4;
   }
 
   public void midCoral(){
     targPos = initialPos + MID_POS;
     elevate(0.2, 0);
-    //elevatorPID.setReference(initialPos + MID_POS, ControlType.kPosition);
+    // elevatorPID.setReference(initialPos + MID_POS, ControlType.kPosition);
     count = 3;
   }
 
   public void lowCoral(){
     targPos = initialPos + LOW_POS;
     elevate(0.2, 0);
-    //elevatorPID.setReference(initialPos + LOW_POS, ControlType.kPosition);
+    // elevatorPID.setReference(initialPos + LOW_POS, ControlType.kPosition);
     count = 2;
   }
 
   public void trayCoral(){
     targPos = initialPos + TRAY_POS;
     elevate(0.2, 0);
-    //elevatorPID.setReference(initialPos + TRAY_POS, ControlType.kPosition);
+    // elevatorPID.setReference(initialPos + TRAY_POS, ControlType.kPosition);
     count = 1;
   }
 
   public void resetElevator(){
     targPos = initialPos + RESET_POS;
     elevate(0.2, 0);
-    //elevatorPID.setReference(initialPos + RESET_POS, ControlType.kPosition);
+    // elevatorPID.setReference(initialPos + RESET_POS, ControlType.kPosition);
     count = 0;
   }
 
   public boolean inPosition(){
     return (elevatorEncoder.getPosition() - targPos) >= encoderDeadzone;
-    
     /*
     switch (count) {
       case 1:
@@ -153,17 +149,14 @@ public class Elevator extends RoboDevice{
     SmartDashboard.putNumber("Elev: ", targPos);
     SmartDashboard.putNumber("ElevPos: ", elevatorEncoder.getPosition());
   }
-  
 
   @Override
   public void doGatherInfo() {
     super.doGatherInfo();
-
   }
 
   @Override
   public void doActions() {
     super.doActions();
   }
-
 }

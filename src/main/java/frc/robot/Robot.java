@@ -41,7 +41,7 @@ public class Robot extends HuskyRobot {
 
     m_TeleopDecider.initialize();
     m_AutoDecider.initialize();
-    
+
     m_TheChassis.Initialize();
     m_Elevator.Initialize();
     m_CoralHandler.Initialize();
@@ -93,7 +93,6 @@ public class Robot extends HuskyRobot {
     m_AutoDecider.doDecisions();
   }
 
-
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
@@ -113,13 +112,10 @@ public class Robot extends HuskyRobot {
   @Override
   public void teleopInit() {
     super.teleopInit();
-  
   }
-
 
   public void doTeleopDecisions(){
      m_TeleopDecider.doDecisions();
-  
   }
 
   /** This function is called periodically during operator control. */
@@ -151,5 +147,4 @@ public class Robot extends HuskyRobot {
   public void testPeriodic() {
     super.testPeriodic();
   }
-
 }

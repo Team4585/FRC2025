@@ -11,7 +11,6 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import frc.robot.huskylib.src.RoboDevice;
 
 public class AlgaeLifter extends RoboDevice{
-
   private SparkMax algaeLifterMotor;
   private SparkMaxConfig algaeLifterConfig;
   private SparkClosedLoopController algaeLifterPID;
@@ -22,21 +21,19 @@ public class AlgaeLifter extends RoboDevice{
 
   public AlgaeLifter(){
     super("Algae Handler");
-
   }
-  
+
   public void Initialize(){
     algaeLifterMotor = new SparkMax(14, MotorType.kBrushless);
     algaeLifterConfig = new SparkMaxConfig();
     algaeLifterPID = algaeLifterMotor.getClosedLoopController();
     algaeLifterEncoder = algaeLifterMotor.getEncoder();
-    
+
     isUp = true;
 
     algaeLifterConfig.closedLoop.pid(.01,0,0)
     .maxOutput(1)
     .minOutput(-1);
-
 
     algaeLifterMotor.configure(algaeLifterConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
   }
@@ -66,18 +63,14 @@ public class AlgaeLifter extends RoboDevice{
       reelIn();
     }
   }
+
   @Override
   public void doGatherInfo() {
     super.doGatherInfo();
   }
 
-
-
-
-
   @Override
   public void doActions() {
     super.doActions();
   }
-
 }

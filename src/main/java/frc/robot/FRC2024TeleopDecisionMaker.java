@@ -15,28 +15,27 @@ public class FRC2024TeleopDecisionMaker {
   boolean slowDriving = false;
   boolean isFieldOriented = true;
 
-  FRC2024TeleopDecisionMaker(){
+  FRC2024TeleopDecisionMaker(){}
 
-  }
-
-  public void initialize(){
-  }
+  public void initialize(){}
 
   public void doDecisions(){
-
     if (slowDriving) {
-      m_Chassis.setTargSpeed((m_TheJoystick.getForwardBackwardValue()/4),
-       -(m_TheJoystick.getSideToSideValue()/4),
+      m_Chassis.setTargSpeed(
+        (m_TheJoystick.getForwardBackwardValue()/4),
+        -(m_TheJoystick.getSideToSideValue()/4),
         -m_TheJoystick.getTwistValue(),
-         isFieldOriented);
+        isFieldOriented
+      );
     }
+
     if (!slowDriving) {
-      
-    m_Chassis.setTargSpeed(m_TheJoystick.getForwardBackwardValue(),
-    -m_TheJoystick.getSideToSideValue(),
-    -m_TheJoystick.getTwistValue(),
-    isFieldOriented
-    );
+      m_Chassis.setTargSpeed(
+        m_TheJoystick.getForwardBackwardValue(),
+        -m_TheJoystick.getSideToSideValue(),
+        -m_TheJoystick.getTwistValue(),
+        isFieldOriented
+      );
     }
 
     if (m_TheJoystick.button8PressEvent()) {
@@ -46,7 +45,7 @@ public class FRC2024TeleopDecisionMaker {
     m_Chassis.stabilize(isFieldOriented);
 
     m_Elevator.elevate(1, -m_weaponsController.getRightFB());
-      
+
     if (m_TheJoystick.button7PressEvent()) {
       if (isFieldOriented) {
         isFieldOriented = false;
@@ -91,7 +90,7 @@ public class FRC2024TeleopDecisionMaker {
     // if (m_TheWeaponsJoystick.button2ReleaseEvent()) {
     //   m_AlgaeHandler.stop();
     // }
-      
+
     // m_CoralHandler.switchStop();
 
     // if (m_TheWeaponsJoystick.triggerPressEvent()) {
@@ -112,7 +111,6 @@ public class FRC2024TeleopDecisionMaker {
     // if (m_TheWeaponsJoystick.button5PressEvent()) {
     //   m_AlgaeLifter.move();
     // }
-
   }
 
   public void setChassis(FRC2024Chassis theChassis){
@@ -134,7 +132,4 @@ public class FRC2024TeleopDecisionMaker {
   // public void setAlgaeLifter(AlgaeLifter lifter){
   //   m_AlgaeLifter = lifter;
   // }
-
-
-  
 }

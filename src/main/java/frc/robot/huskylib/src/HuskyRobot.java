@@ -63,5 +63,4 @@ public abstract class HuskyRobot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {}
-    
 }

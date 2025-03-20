@@ -14,9 +14,8 @@ public class AlgaeHandler extends RoboDevice{
   private boolean holdingAlgae;
   public AlgaeHandler(){
     super("Algae Handler");
-
   }
-  
+
   public void Initialize(){
     algaeMotor = new VictorSPX(WiringConnections.ALGAE_CIM);
     algaeSensor = new DigitalInput(WiringConnections.ALGAE_SWITCH_DIO);
@@ -62,22 +61,18 @@ public class AlgaeHandler extends RoboDevice{
     algaeMotor.set(ControlMode.PercentOutput, 0);
     holdingAlgae = false;
   }
-  
+
   public void keepAlgea(){
     algaeMotor.set(ControlMode.PercentOutput, .05);
   }
+
   @Override
   public void doGatherInfo() {
     super.doGatherInfo();
   }
 
-
-
-
-
   @Override
   public void doActions() {
     super.doActions();
   }
-
 }

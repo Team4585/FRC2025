@@ -18,12 +18,10 @@ public class HuskyXbox extends RoboDevice {
 
   protected static final double DEFAULT_STICK_DEADZONE  = 0.1;
   protected static final double DEFAULT_TRIGGER_DEADZONE = 0.1;
-  
 
   //===========================================
 
   private class ButtonInfo{
-
     private int m_buttonNumber = 0;
     private Boolean m_isPushed = false;
     private Boolean m_justPressed = false;
@@ -66,7 +64,6 @@ public class HuskyXbox extends RoboDevice {
   //===========================================
 
   private class AxisInfo{
-
     private int m_axisIndex = 0;
     private double m_deadZone = DEFAULT_DEADZONE_VALUE;
     private double m_currentValue = 0.0;
@@ -106,7 +103,7 @@ public class HuskyXbox extends RoboDevice {
     super("HuskyXbox" + port);
 
     m_joystick = new Joystick(port);
-        
+
     m_buttons = new ButtonInfo[m_buttonCount];
     for(int buttonIndex = 0; buttonIndex < m_buttonCount; buttonIndex++){
       m_buttons[buttonIndex] = new ButtonInfo(buttonIndex);
@@ -123,7 +120,6 @@ public class HuskyXbox extends RoboDevice {
 
   @Override
   public void doGatherInfo() {
-
     for(int buttonIndex = 0; buttonIndex < m_buttonCount; buttonIndex++){
       m_buttons[buttonIndex].ReadValue();
     }
@@ -155,8 +151,6 @@ public class HuskyXbox extends RoboDevice {
     return m_povValue;
   }
 
-
-
   public void setDeadZoneValue(int axisIndex, double deadZoneValue) {
     m_axes[axisIndex].setDeadZoneValue(deadZoneValue);
   }
@@ -164,5 +158,4 @@ public class HuskyXbox extends RoboDevice {
   protected double getAxisValue(int axisIndex){
     return m_axes[axisIndex].getValue();
   }
-
 }

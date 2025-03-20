@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.huskylib.src.RoboDevice;
 
 public class CoralHandler extends RoboDevice{
-
   private SparkMax coralMotor;
   private DigitalInput coralSensor;
 
@@ -15,9 +14,8 @@ public class CoralHandler extends RoboDevice{
 
   public CoralHandler(){
     super("Coral Handler");
-
   }
-  
+
   public void Initialize(){
     coralMotor = new SparkMax(WiringConnections.CORAL_MOTOR, MotorType.kBrushless);
     coralSensor = new DigitalInput(WiringConnections.CORAL_SWITCH_DIO);
@@ -41,7 +39,7 @@ public class CoralHandler extends RoboDevice{
     coralMotor.set(speed);
   }
 
-  
+
   public void stop(){
     stopMotor();
     holdingCoral = false;
@@ -51,23 +49,18 @@ public class CoralHandler extends RoboDevice{
     coralMotor.set(1);
   }
 
-  
+
   private void stopMotor(){
     coralMotor.set(0);
   }
-  
+
   @Override
   public void doGatherInfo() {
     super.doGatherInfo();
   }
 
-
-
-
-
   @Override
   public void doActions() {
     super.doActions();
   }
-
 }
