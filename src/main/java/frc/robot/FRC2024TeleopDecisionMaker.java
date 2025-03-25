@@ -47,13 +47,14 @@ public class FRC2024TeleopDecisionMaker {
 
     m_Elevator.elevate(1, -m_weaponsController.getRightFB());
       
+      /*
     if (m_TheJoystick.button7PressEvent()) {
       if (isFieldOriented) {
         isFieldOriented = false;
       }else{
         isFieldOriented = true;
       }
-    }
+    }*/
 
     if (m_TheJoystick.button9PressEvent()) {
       m_Chassis.resetPigeon();

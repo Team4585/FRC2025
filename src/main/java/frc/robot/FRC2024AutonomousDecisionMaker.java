@@ -19,7 +19,7 @@ public class FRC2024AutonomousDecisionMaker {
   private CoralHandler m_CoralHandler;
 
   private AutoTaskDriveForward autoStartForward = new AutoTaskDriveForward(2, -0.2);
-  //private AutoTaskDriveForward autoMoveOutOfWay = new AutoTaskDriveForward(4.5, -.3);
+  private AutoTaskDriveForward autoMoveOutOfWay = new AutoTaskDriveForward(0, -.3);
   private AutoTaskHighCoral autoCoral = new AutoTaskHighCoral();
   private AutoTaskResetElevator autoresetElevator = new AutoTaskResetElevator();
 
