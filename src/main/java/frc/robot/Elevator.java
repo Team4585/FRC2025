@@ -114,26 +114,18 @@ public class Elevator extends RoboDevice {
     count++;
 
     switch (count) {
-      case 1:
-        trayCoral();
-        break;
-      case 2:
-        lowCoral();
-        break;
-      case 3:
-        midCoral();
-        break;
-      case 4:
-        highCoral();
-        break;
-      case 5:
-        resetElevator();
-        count = 0;
-        break;
-      default:
-        resetElevator();
-        count = 0;
-        break;
+      case 1 -> trayCoral();
+      case 2 -> lowCoral();
+      case 3 -> midCoral();
+      case 4 -> highCoral();
+      case 5 -> {
+          resetElevator();
+          count = 0;
+          }
+      default -> {
+          resetElevator();
+          count = 0;
+          }
     }
   }
 
@@ -153,15 +145,5 @@ public class Elevator extends RoboDevice {
     elevatorPID.setReference(targPos, ControlType.kPosition);
     SmartDashboard.putNumber("Elev: ", targPos);
     SmartDashboard.putNumber("ElevPos: ", elevatorEncoder.getPosition());
-  }
-
-  @Override
-  public void doGatherInfo() {
-    super.doGatherInfo();
-  }
-
-  @Override
-  public void doActions() {
-    super.doActions();
   }
 }

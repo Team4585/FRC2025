@@ -95,6 +95,7 @@ public class HuskyVector2D {
         return Math.toDegrees(Math.atan2(WorkVec.getX(), WorkVec.getY()));
     }
 
+    @Override
     public String toString() {
         return "(" + getX() + ", " + getY() + ")";
     }

@@ -1,13 +1,15 @@
+package frc.robot;
+
 /**
  * Calculates the inverse kinematics for the 2025 arm (arm on elevator)
  * Joint1 attaches the elevator to the first arm segment
  * Joint2 attaches the first arm segment to the end-effector
  */
 public class ArmIK {
-    private double l1;
-    private double l2;
-    private double hmin;
-    private double hmax;
+    private final double l1;
+    private final double l2;
+    private final double hmin;
+    private final double hmax;
 
     /**
      * New arm go brrr
@@ -47,5 +49,4 @@ public class ArmIK {
 
         return returnVal;
     }
-}
 }
