@@ -48,4 +48,3 @@ public class ArmIK {
         return returnVal;
     }
 }
-}
