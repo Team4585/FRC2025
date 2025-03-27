@@ -26,8 +26,7 @@ public final class WiringConnections {
   // private static final int CAN_CHANNEL_6 = 6;
   // private static final int CAN_CHANNEL_7 = 7;
 
-
-  //=======================================================
+  // =======================================================
 
   // public static final int XX = DIO_CHANNEL_0;
   // public static final int XX = DIO_CHANNEL_1;

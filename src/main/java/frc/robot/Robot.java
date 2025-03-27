@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -20,14 +16,14 @@ public class Robot extends HuskyRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private FRC2024TeleopDecisionMaker m_TeleopDecider = new FRC2024TeleopDecisionMaker();
-  private FRC2024AutonomousDecisionMaker m_AutoDecider = new FRC2024AutonomousDecisionMaker();
+  private final FRC2024TeleopDecisionMaker m_TeleopDecider = new FRC2024TeleopDecisionMaker();
+  private final FRC2024AutonomousDecisionMaker m_AutoDecider = new FRC2024AutonomousDecisionMaker();
 
-  private FRC2024Chassis m_TheChassis = new FRC2024Chassis();
+  private final FRC2024Chassis m_TheChassis = new FRC2024Chassis();
 
   // private AlgaeHandler m_AlgaeHandler = new AlgaeHandler();
-  private CoralHandler m_CoralHandler = new CoralHandler();
-  private Elevator m_Elevator = new Elevator();
+  private final CoralHandler m_CoralHandler = new CoralHandler();
+  private final Elevator m_Elevator = new Elevator();
   // private AlgaeLifter m_AlgaeLifter = new AlgaeLifter();
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -41,7 +37,7 @@ public class Robot extends HuskyRobot {
 
     m_TeleopDecider.initialize();
     m_AutoDecider.initialize();
-    
+
     m_TheChassis.Initialize();
     m_Elevator.Initialize();
     m_CoralHandler.Initialize();
@@ -89,12 +85,11 @@ public class Robot extends HuskyRobot {
     System.out.println("Auto selected: " + m_autoSelected);
   }
 
-  public void doAutonomousDecisions(){
+  public void doAutonomousDecisions() {
     m_AutoDecider.doDecisions();
   }
 
-
-  /** This function is called periodically during autonomous. */
+  // Called periodically during autonomous.
   @Override
   public void autonomousPeriodic() {
     super.autonomousPeriodic();
@@ -109,47 +104,43 @@ public class Robot extends HuskyRobot {
     // }
   }
 
-  /** This function is called once when teleop is enabled. */
+  // Called once when teleop is enabled.
   @Override
   public void teleopInit() {
     super.teleopInit();
-  
   }
 
-
-  public void doTeleopDecisions(){
+  public void doTeleopDecisions() {
      m_TeleopDecider.doDecisions();
-  
   }
 
-  /** This function is called periodically during operator control. */
+  // Called periodically during operator control.
   @Override
   public void teleopPeriodic() {
     super.teleopPeriodic();
   }
 
-  /** This function is called once when the robot is disabled. */
+  // Called once when the robot is disabled.
   @Override
   public void disabledInit() {
     super.disabledInit();
   }
 
-  /** This function is called periodically when disabled. */
+  // Called periodically when disabled.
   @Override
   public void disabledPeriodic() {
     super.disabledPeriodic();
   }
 
-  /** This function is called once when test mode is enabled. */
+  // Called once when test mode is enabled.
   @Override
   public void testInit() {
     super.testInit();
   }
 
-  /** This function is called periodically during test mode. */
+  // Called periodically during test mode.
   @Override
   public void testPeriodic() {
     super.testPeriodic();
   }
-
 }
