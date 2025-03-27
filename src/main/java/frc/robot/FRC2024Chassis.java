@@ -32,12 +32,7 @@ public class FRC2024Chassis extends RoboDevice {
   }
 
   @Override
-  public void doGatherInfo() {
-    super.doGatherInfo();
-  }
-
-  @Override
   public void doActions() {
-    super.doActions();
+    m_driveTrain.doGatherInfo();
   }
 }

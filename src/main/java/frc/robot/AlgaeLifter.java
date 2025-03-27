@@ -62,14 +62,4 @@ public class AlgaeLifter extends RoboDevice {
       reelIn();
     }
   }
-
-  @Override
-  public void doGatherInfo() {
-    super.doGatherInfo();
-  }
-
-  @Override
-  public void doActions() {
-    super.doActions();
-  }
 }

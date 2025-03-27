@@ -1,11 +1,15 @@
 package frc.robot;
 
-import frc.robot.huskylib.devices.HuskyJoystick;
+import edu.wpi.first.wpilibj.Joystick;
 
-public class FRC2024Joystick extends HuskyJoystick {
-  private static final int FRC2024_JOYSTICK_PORT = 0;
+public class FRC2024Joystick {
+  private static final int MAIN_JOYSTICK_PORT = 0;
+  private final Joystick MainJoystick;
 
-  private static final int TRIGGER_BUTTON = 0;
+  private static final double GLOBAL_DEADZONE = 0.15;
+  private static final int AXIS_SIDE_TO_SIDE = 0;
+  private static final int AXIS_FORWARD_BACKWARD = 1;
+  private static final int AXIS_TWIST = 2;
 
   private static final double FB_DEAD_ZONE = 0.2;
   private static final double FB_LIVE_ZONE = 1.0 - FB_DEAD_ZONE;
@@ -17,92 +21,76 @@ public class FRC2024Joystick extends HuskyJoystick {
   private static final double ROT_LIVE_ZONE = 1.0 - ROT_DEAD_ZONE;
 
   public FRC2024Joystick() {
-    super(FRC2024_JOYSTICK_PORT);
+    MainJoystick = new Joystick(MAIN_JOYSTICK_PORT);
+  }
+
+  private double getRawVal(int axis) {
+    double RawValue = MainJoystick.getRawAxis(axis);
+    return Math.abs((RawValue > GLOBAL_DEADZONE) ? RawValue : 0.0);
   }
 
   public double getForwardBackwardValue() {
     double RetVal = 0.0;
-    double RawVal = getAxisValue(HuskyJoystick.AXIS_FORWARD_BACKWARD);
-    double RawMagVal = Math.abs(RawVal); // work with positive numbers
+    double RawVal = getRawVal(AXIS_FORWARD_BACKWARD);
 
-    if (RawMagVal > FB_DEAD_ZONE) {
-      RetVal = RawMagVal - FB_DEAD_ZONE; // distance past dead zone
+    if (RawVal > FB_DEAD_ZONE) {
+      RetVal = RawVal - FB_DEAD_ZONE; // distance past dead zone
       RetVal /= FB_LIVE_ZONE; // scale to full range of live zone
-      RetVal = RetVal * RetVal; // square it to make the line a curve rather than straight
-      if (RawVal > 0.0) {
-        RetVal = -RetVal; // Fix the sign, note that we're reversing the sign from the raw joystick reading.
-      }
+      RetVal *= RetVal; // square it to make the line a curve rather than straight
+      RetVal = Math.abs(RetVal); // Fix the sign
     }
-
-    // if(RawVal != 0.0){
-    // System.out.println("FBRawVal -> " + RawVal + " FBRetVal -> " + RetVal);
-    // }
 
     return RetVal;
   }
 
   public double getSideToSideValue() {
     double RetVal = 0.0;
-    double RawVal = getAxisValue(HuskyJoystick.AXIS_SIDE_TO_SIDE);
-    double RawMagVal = Math.abs(RawVal); // work with positive numbers
+    double RawVal = getRawVal(AXIS_SIDE_TO_SIDE);
 
-    if (RawMagVal > SS_DEAD_ZONE) {
-      RetVal = RawMagVal - SS_DEAD_ZONE; // distance past dead zone
+    if (RawVal > SS_DEAD_ZONE) {
+      RetVal = RawVal - SS_DEAD_ZONE; // distance past dead zone
       RetVal /= SS_LIVE_ZONE; // scale to full range of live zone
-      RetVal = RetVal * RetVal; // square it to make the line a curve rather than straight
-      if (RawVal < 0.0) {
-        RetVal = -RetVal; // Fix the sign
-      }
+      RetVal *= RetVal; // square it to make the line a curve rather than straight
+      RetVal = Math.abs(RetVal); // Fix the sign
     }
-
-    // if(RawVal != 0.0){
-    // System.out.println("SSRawVal -> " + RawVal + " SSRetVal -> " + RetVal);
-    // }
 
     return RetVal;
   }
 
   public double getTwistValue() {
     double RetVal = 0.0;
-    double RawVal = getAxisValue(HuskyJoystick.AXIS_TWIST);
-    double RawMagVal = Math.abs(RawVal); // work with positive numbers
+    double RawVal = getRawVal(AXIS_TWIST);
 
-    if (RawMagVal > ROT_DEAD_ZONE) {
-      RetVal = RawMagVal - ROT_DEAD_ZONE; // distance past dead zone
+    if (RawVal > ROT_DEAD_ZONE) {
+      RetVal = RawVal - ROT_DEAD_ZONE; // distance past dead zone
       RetVal /= ROT_LIVE_ZONE; // scale to full range of live zone
-      if (RawVal < 0.0) {
-        RetVal = -RetVal; // Fix the sign
-      }
+      RetVal = Math.abs(RetVal); // Fix the sign
     }
-
-    // if (RawVal != 0.0) {
-    //  System.out.println("RotRawVal -> " + RawVal + " RotRetVal -> " + RetVal);
-    // }
 
     return RetVal;
   }
 
   public Boolean triggerPushed() {
-    return isButtonPushed(TRIGGER_BUTTON);
+    return MainJoystick.getTrigger();
   }
 
   public Boolean triggerPressEvent() {
-    return buttonPressEvent(TRIGGER_BUTTON);
+    return MainJoystick.getTriggerPressed();
   }
 
   public Boolean triggerReleaseEvent() {
-    return buttonReleaseEvent(TRIGGER_BUTTON);
+    return MainJoystick.getTriggerReleased();
   }
 
   public boolean button7PressEvent() {
-    return buttonPressEvent(6);
+    return MainJoystick.getRawButtonPressed(6);
   }
 
   public boolean button8PressEvent() {
-    return buttonPressEvent(7);
+    return MainJoystick.getRawButtonPressed(7);
   }
 
   public boolean button9PressEvent() {
-    return buttonPressEvent(8);
+    return MainJoystick.getRawButtonPressed(8);
   }
 }

@@ -38,7 +38,6 @@ public abstract class HuskyRobot extends TimedRobot {
   // This function is called periodically during autonomous.
   @Override
   public void autonomousPeriodic() {
-    RoboDevice.doGatherInfoAll();
     doAutonomousDecisions();
     RoboDevice.doActionsAll();
   }
@@ -51,7 +50,6 @@ public abstract class HuskyRobot extends TimedRobot {
   // This function is called periodically during operator control.
   @Override
   public void teleopPeriodic() {
-    RoboDevice.doGatherInfoAll();
     doTeleopDecisions();
     RoboDevice.doActionsAll();
   }

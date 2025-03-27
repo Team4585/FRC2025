@@ -3,7 +3,7 @@ package frc.robot.huskylib.src;
 import java.util.ArrayList;
 
 public class RoboDevice {
-    private static final ArrayList<RoboDevice> m_allParts = new ArrayList<RoboDevice>();
+    private static final ArrayList<RoboDevice> m_allParts = new ArrayList<>();
 
     private Boolean m_debugModeOn = false;
     private String m_deviceName = "";
@@ -11,21 +11,13 @@ public class RoboDevice {
 
     public RoboDevice(String deviceName) {
         m_deviceName = deviceName;
-        m_ChildDevices = new ArrayList<RoboDevice>();
-
-        RoboDevice.addPart(this);
+        m_ChildDevices = new ArrayList<>();
     }
 
     public RoboDevice AddChildDevice(RoboDevice newChild) {
         RoboDevice.removePart(newChild);
         m_ChildDevices.add(newChild);
         return newChild;
-    }
-
-    private void doChildrenGatherInfo() {
-        for (RoboDevice Child : m_ChildDevices) {
-            Child.doGatherInfo();
-        }
     }
 
     private void doChildrenActions() {
@@ -52,11 +44,6 @@ public class RoboDevice {
 
     public void doAutonomousInit() {
         doChildrenAutonomousInit();
-    }
-
-    public void doGatherInfo() {
-        // System.out.println("Do GatherInfo for " + getDeviceName());
-        doChildrenGatherInfo();
     }
 
     public void doActions() {
@@ -96,12 +83,6 @@ public class RoboDevice {
 
     public static ArrayList<RoboDevice> getParts() {
         return (m_allParts);
-    }
-
-    public static void doGatherInfoAll() {
-        for (RoboDevice r : RoboDevice.getParts()) {
-            r.doGatherInfo();
-        }
     }
 
     public static void doActionsAll() {

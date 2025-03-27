@@ -66,14 +66,4 @@ public class AlgaeHandler extends RoboDevice {
   public void keepAlgea() {
     algaeMotor.set(ControlMode.PercentOutput, .05);
   }
-
-  @Override
-  public void doGatherInfo() {
-    super.doGatherInfo();
-  }
-
-  @Override
-  public void doActions() {
-    super.doActions();
-  }
 }
