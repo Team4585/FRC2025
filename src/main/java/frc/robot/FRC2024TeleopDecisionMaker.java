@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FRC2024TeleopDecisionMaker {
@@ -13,6 +14,9 @@ public class FRC2024TeleopDecisionMaker {
   private FRC2024Chassis m_Chassis;
   // private AlgaeLifter m_AlgaeLifter;
 
+  private Pose3d llTranslationData;
+  private double[] llRotationData;
+
   boolean slowDriving = false;
   boolean isFieldOriented = true;
 
@@ -20,6 +24,11 @@ public class FRC2024TeleopDecisionMaker {
   }
 
   public void initialize() {
+  }
+
+  public void doGatherInfo() {
+    llTranslationData = LimelightHelpers.getTargetPose3d_CameraSpace("limelight");
+    llRotationData = LimelightHelpers.getCameraPose_TargetSpace("limelight");
   }
 
   public void doDecisions() {
@@ -46,6 +55,15 @@ public class FRC2024TeleopDecisionMaker {
     m_Chassis.stabilize(isFieldOriented);
 
     m_Elevator.elevate(1, -m_weaponsController.getRightFB());
+
+    // Activate autoalign when POV pushed right (90°)
+    if (m_TheJoystick.getPOV() == 90) {
+      double rotate = 0.03 * llRotationData[4];
+      if (Math.abs(rotate) < 0.1) rotate = 0;
+      double velocityY = (Math.abs(llRotationData[4]) > 1) ? 0 : -llTranslationData.getX();
+      double velocityX = (Math.abs(llTranslationData.getX()) > 1) ? 0 : llTranslationData.getY();
+      m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented);
+    }
 
       /*
     if (m_TheJoystick.button7PressEvent()) {
