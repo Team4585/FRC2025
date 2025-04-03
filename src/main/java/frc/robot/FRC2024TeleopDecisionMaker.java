@@ -32,21 +32,6 @@ public class FRC2024TeleopDecisionMaker {
   }
 
   public void doDecisions() {
-    if (slowDriving) {
-      m_Chassis.setTargSpeed(
-          (m_TheJoystick.getForwardBackwardValue() / 4),
-          -(m_TheJoystick.getSideToSideValue() / 4),
-          -m_TheJoystick.getTwistValue(),
-          isFieldOriented);
-    }
-
-    if (!slowDriving) {
-      m_Chassis.setTargSpeed(
-          m_TheJoystick.getForwardBackwardValue(),
-          -m_TheJoystick.getSideToSideValue(),
-          -m_TheJoystick.getTwistValue(),
-          isFieldOriented);
-    }
 
     if (m_TheJoystick.button8PressEvent()) {
       slowDriving = !slowDriving;
@@ -65,6 +50,23 @@ public class FRC2024TeleopDecisionMaker {
         double velocityX = (Math.abs(llTranslationData.getX()) > 1) ? 0 : llTranslationData.getY();
         m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented);
       }
+    } else {
+
+    if (slowDriving) {
+      m_Chassis.setTargSpeed(
+          (m_TheJoystick.getForwardBackwardValue() / 4),
+          -(m_TheJoystick.getSideToSideValue() / 4),
+          -m_TheJoystick.getTwistValue(),
+          isFieldOriented);
+    }
+
+    if (!slowDriving) {
+      m_Chassis.setTargSpeed(
+          m_TheJoystick.getForwardBackwardValue(),
+          -m_TheJoystick.getSideToSideValue(),
+          -m_TheJoystick.getTwistValue(),
+          isFieldOriented);
+    }
     }
 
       /*
