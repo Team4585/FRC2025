@@ -4,19 +4,25 @@ import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FRC2024TeleopDecisionMaker {
-  private final FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
+  // private AlgaeLifter m_AlgaeLifter;
   // private FRC2024WeaponsJoystick m_TheWeaponsJoystick = new
   // FRC2024WeaponsJoystick();
   // private AlgaeHandler m_AlgaeHandler;
+
+  private final FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
   private final WeaponsXboxController m_weaponsController = new WeaponsXboxController(1);
   private CoralHandler m_CoralHandler;
   private Elevator m_Elevator;
   private FRC2024Chassis m_Chassis;
   private Limelight m_Limelight = new Limelight();
-  // private AlgaeLifter m_AlgaeLifter;
 
   private Pose3d llTranslationData;
   private double[] llRotationData;
+
+  private double align_rotateSpeed = 0.03;
+  private double align_translateSpeed = 0.05; //xy robot speed
+  private double align_horizontalTune = 1;
+  private double align_verticalTune = 1; //multiplies 
 
   boolean slowDriving = false;
   boolean isFieldOriented = true;
@@ -48,9 +54,12 @@ public class FRC2024TeleopDecisionMaker {
     System.out.println("lltransl Y "+ llTranslationData.getY());
     */
 
-    // Activate autoalign when POV pushed right (90°)
-
+    // Debug limelight:
+    System.out.println("degHoriz: " + m_Limelight.getDegHorizontalFromTarget());
+    System.out.println("degVertic: " + m_Limelight.getDegVerticalFromTarget());
+    System.out.println("degRot: " + m_Limelight.getSkewOrRotation());
     
+    // Activate autoalign when POV pushed right (90°), else normal chassis
     if (m_TheJoystick.getPOV() == 90) {
       /* Old limelight
       if (LimelightHelpers.getTV("limelight")) {
@@ -64,11 +73,14 @@ public class FRC2024TeleopDecisionMaker {
         */
 
         if (m_Limelight.isTargetFound()) {
-          double rotate = 0.03 * m_Limelight.getSkewOrRotation();
+
+          double rotate = align_rotateSpeed * m_Limelight.getSkewOrRotation();
           if (Math.abs(rotate) < 0.1) rotate = 0;
-          double velocityY = (Math.abs(llRotationData[4]) > 1) ? 0 : -llTranslationData.getX();
-          double velocityX = (Math.abs(llTranslationData.getX()) > 1) ? 0 : llTranslationData.getY();
-          m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented);
+          double velocityY = m_Limelight.getDegHorizontalFromTarget() * align_translateSpeed;
+          double velocityX = m_Limelight.getDegVerticalFromTarget() * align_translateSpeed;
+
+          m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented); //post to chassis
+
           System.out.println("POV 90deg");
         }
 
