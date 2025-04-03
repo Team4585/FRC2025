@@ -12,6 +12,7 @@ public class FRC2024TeleopDecisionMaker {
   private CoralHandler m_CoralHandler;
   private Elevator m_Elevator;
   private FRC2024Chassis m_Chassis;
+  private Limelight m_Limelight = new Limelight();
   // private AlgaeLifter m_AlgaeLifter;
 
   private Pose3d llTranslationData;
@@ -41,12 +42,17 @@ public class FRC2024TeleopDecisionMaker {
 
     m_Elevator.elevate(1, -m_weaponsController.getRightFB());
 
+    /* Old limelight
     System.out.println("llrot  "+ llRotationData);
     System.out.println("lltransl X "+ llTranslationData.getX());
     System.out.println("lltransl Y "+ llTranslationData.getY());
+    */
 
     // Activate autoalign when POV pushed right (90°)
+
+    
     if (m_TheJoystick.getPOV() == 90) {
+      /* Old limelight
       if (LimelightHelpers.getTV("limelight")) {
         double rotate = 0.03 * llRotationData[4];
         if (Math.abs(rotate) < 0.1) rotate = 0;
@@ -55,6 +61,17 @@ public class FRC2024TeleopDecisionMaker {
         m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented);
         System.out.println("POV 90deg");
       }
+        */
+
+        if (m_Limelight.isTargetFound()) {
+          double rotate = 0.03 * m_Limelight.getSkewOrRotation();
+          if (Math.abs(rotate) < 0.1) rotate = 0;
+          double velocityY = (Math.abs(llRotationData[4]) > 1) ? 0 : -llTranslationData.getX();
+          double velocityX = (Math.abs(llTranslationData.getX()) > 1) ? 0 : llTranslationData.getY();
+          m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented);
+          System.out.println("POV 90deg");
+        }
+
     } else {
 
     if (slowDriving) {
