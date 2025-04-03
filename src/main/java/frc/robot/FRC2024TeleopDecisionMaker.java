@@ -58,11 +58,13 @@ public class FRC2024TeleopDecisionMaker {
 
     // Activate autoalign when POV pushed right (90°)
     if (m_TheJoystick.getPOV() == 90) {
-      double rotate = 0.03 * llRotationData[4];
-      if (Math.abs(rotate) < 0.1) rotate = 0;
-      double velocityY = (Math.abs(llRotationData[4]) > 1) ? 0 : -llTranslationData.getX();
-      double velocityX = (Math.abs(llTranslationData.getX()) > 1) ? 0 : llTranslationData.getY();
-      m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented);
+      if (LimelightHelpers.getTV("limelight")) {
+        double rotate = 0.03 * llRotationData[4];
+        if (Math.abs(rotate) < 0.1) rotate = 0;
+        double velocityY = (Math.abs(llRotationData[4]) > 1) ? 0 : -llTranslationData.getX();
+        double velocityX = (Math.abs(llTranslationData.getX()) > 1) ? 0 : llTranslationData.getY();
+        m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented);
+      }
     }
 
       /*
