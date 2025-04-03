@@ -55,6 +55,7 @@ public class FRC2024TeleopDecisionMaker {
     */
 
     // Debug limelight:
+    System.out.println("isTargetFound: " + m_Limelight.isTargetFound());
     System.out.println("degHoriz: " + m_Limelight.getDegHorizontalFromTarget());
     System.out.println("degVertic: " + m_Limelight.getDegVerticalFromTarget());
     System.out.println("degRot: " + m_Limelight.getSkewOrRotation());
