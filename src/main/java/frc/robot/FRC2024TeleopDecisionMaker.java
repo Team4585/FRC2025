@@ -27,11 +27,11 @@ public class FRC2024TeleopDecisionMaker {
   }
 
   public void doGatherInfo() {
-    llTranslationData = LimelightHelpers.getTargetPose3d_CameraSpace("limelight");
-    llRotationData = LimelightHelpers.getCameraPose_TargetSpace("limelight");
   }
 
   public void doDecisions() {
+    llTranslationData = LimelightHelpers.getTargetPose3d_CameraSpace("limelight");
+    llRotationData = LimelightHelpers.getCameraPose_TargetSpace("limelight");
 
     if (m_TheJoystick.button8PressEvent()) {
       slowDriving = !slowDriving;
@@ -41,6 +41,10 @@ public class FRC2024TeleopDecisionMaker {
 
     m_Elevator.elevate(1, -m_weaponsController.getRightFB());
 
+    System.out.println("llrot  "+ llRotationData);
+    System.out.println("lltransl X "+ llTranslationData.getX());
+    System.out.println("lltransl Y "+ llTranslationData.getY());
+
     // Activate autoalign when POV pushed right (90°)
     if (m_TheJoystick.getPOV() == 90) {
       if (LimelightHelpers.getTV("limelight")) {
@@ -49,6 +53,7 @@ public class FRC2024TeleopDecisionMaker {
         double velocityY = (Math.abs(llRotationData[4]) > 1) ? 0 : -llTranslationData.getX();
         double velocityX = (Math.abs(llTranslationData.getX()) > 1) ? 0 : llTranslationData.getY();
         m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented);
+        System.out.println("POV 90deg");
       }
     } else {
 
