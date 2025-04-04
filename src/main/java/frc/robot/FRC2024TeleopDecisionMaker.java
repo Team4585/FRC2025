@@ -21,8 +21,8 @@ public class FRC2024TeleopDecisionMaker {
 
   private double align_rotateSpeed = 0.03;
   private double align_translateSpeed = 0.05; //xy robot speed
-  private double align_horizontalTune = 1;
-  private double align_verticalTune = 1; //multiplies 
+  private double align_leftReefOffset = -10;
+  private double align_rightReefOffset = 10;
 
   boolean slowDriving = false;
   boolean isFieldOriented = true;
@@ -61,7 +61,9 @@ public class FRC2024TeleopDecisionMaker {
     System.out.println("degRot: " + m_Limelight.getSkewOrRotation());
     
     // Activate autoalign when POV pushed right (90°), else normal chassis
-    if (m_TheJoystick.getPOV() == 90) {
+    // POV:: The POV angles start at 0 in the up direction, and increase clockwise (e.g. right is 90, upper-left is 315).
+    if (m_TheJoystick.getPOV() >= 45 && m_TheJoystick.getPOV() < 180) {
+      double offsetHorizontal = m_Limelight.getDegHorizontalFromTarget() + align_leftReefOffset;
       /* Old limelight
       if (LimelightHelpers.getTV("limelight")) {
         double rotate = 0.03 * llRotationData[4];
@@ -77,14 +79,26 @@ public class FRC2024TeleopDecisionMaker {
 
           double rotate = align_rotateSpeed * m_Limelight.getSkewOrRotation();
           if (Math.abs(rotate) < 0.1) rotate = 0;
-          double velocityY = m_Limelight.getDegHorizontalFromTarget() * align_translateSpeed;
+          double velocityY = offsetHorizontal * align_translateSpeed;
           double velocityX = m_Limelight.getDegVerticalFromTarget() * align_translateSpeed;
 
           m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented); //post to chassis
 
-          System.out.println("POV 90deg");
+          System.out.println("POV 90deg-ish");
         }
+    } else if (m_TheJoystick.getPOV() >= 225 && m_TheJoystick.getPOV() < 335) {
+      double offsetHorizontal = m_Limelight.getDegHorizontalFromTarget() + align_rightReefOffset;
+      if (m_Limelight.isTargetFound()) {
 
+        double rotate = align_rotateSpeed * m_Limelight.getSkewOrRotation();
+        if (Math.abs(rotate) < 0.1) rotate = 0;
+        double velocityY = offsetHorizontal * align_translateSpeed;
+        double velocityX = m_Limelight.getDegVerticalFromTarget() * align_translateSpeed;
+
+        m_Chassis.setTargSpeed(velocityX, velocityY, rotate, isFieldOriented); //post to chassis
+
+        System.out.println("POV 270deg-ish");
+      }
     } else {
 
     if (slowDriving) {
