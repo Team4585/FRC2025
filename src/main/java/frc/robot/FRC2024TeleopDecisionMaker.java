@@ -19,10 +19,10 @@ public class FRC2024TeleopDecisionMaker {
   private Pose3d llTranslationData;
   private double[] llRotationData;
 
-  private double align_rotateSpeed = 0.03;
-  private double align_translateSpeed = 0.05; //xy robot speed
-  private double align_leftReefOffset = -10;
-  private double align_rightReefOffset = 10;
+  private double align_rotateSpeed = 0.03; // spin speed
+  private double align_translateSpeed = 0.05; // xy robot speed
+  private double align_leftReefOffset = -10; // offset for the left reef post
+  private double align_rightReefOffset = 10; // offset for the right reef post
 
   boolean slowDriving = false;
   boolean isFieldOriented = true;
