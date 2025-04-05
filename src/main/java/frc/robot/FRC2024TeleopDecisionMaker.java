@@ -71,9 +71,9 @@ public class FRC2024TeleopDecisionMaker {
     SmartDashboard.putBoolean("isTargetFound", m_Limelight.isTargetFound());
 
     handleJoystickInput();
-    //handleElevatorControls(); //disabled for arm IK
+    handleElevatorControls(); //disable for arm IK
     handleCoral();
-    handleIK();
+    //handleIK(); //disable for old output
   }
 
   private void handleJoystickInput() {
