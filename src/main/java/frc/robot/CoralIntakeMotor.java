@@ -6,13 +6,13 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.huskylib.src.RoboDevice;
 
-public class CoralHandler extends RoboDevice {
+public class CoralIntakeMotor extends RoboDevice {
   private SparkMax coralMotor;
   private DigitalInput coralSensor;
 
   private boolean holdingCoral;
 
-  public CoralHandler() {
+  public CoralIntakeMotor() {
     super("Coral Handler");
   }
 

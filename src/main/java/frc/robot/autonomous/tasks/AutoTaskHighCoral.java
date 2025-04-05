@@ -1,7 +1,7 @@
 package frc.robot.autonomous.tasks;
 
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.CoralHandler;
+import frc.robot.CoralIntakeMotor;
 import frc.robot.Elevator;
 import frc.robot.autonomous.AutonomousTaskBase;
 
@@ -9,7 +9,7 @@ import frc.robot.autonomous.AutonomousTaskBase;
 public class AutoTaskHighCoral extends AutonomousTaskBase {
 
     private Elevator m_Elevator;
-    private CoralHandler m_CoralHandler;
+    private CoralIntakeMotor m_CoralHandler;
 
     private Timer m_Timer = new Timer();
 
@@ -17,7 +17,7 @@ public class AutoTaskHighCoral extends AutonomousTaskBase {
         m_Elevator = elevator;
     }
 
-    public void setCoralHandler(CoralHandler handler){
+    public void setCoralHandler(CoralIntakeMotor handler){
         m_CoralHandler = handler;
     }
 

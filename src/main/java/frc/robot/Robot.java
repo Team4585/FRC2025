@@ -22,7 +22,7 @@ public class Robot extends HuskyRobot {
   private final FRC2024Chassis m_TheChassis = new FRC2024Chassis();
 
   // private AlgaeHandler m_AlgaeHandler = new AlgaeHandler();
-  private final CoralHandler m_CoralHandler = new CoralHandler();
+  private final CoralIntakeMotor m_CoralHandler = new CoralIntakeMotor();
   private final Elevator m_Elevator = new Elevator();
   // private AlgaeLifter m_AlgaeLifter = new AlgaeLifter();
   /**

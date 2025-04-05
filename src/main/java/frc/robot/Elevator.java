@@ -136,6 +136,18 @@ public class Elevator extends RoboDevice {
     }
   }
 
+  public void goToHeight(double height, double moveSpeed) {
+    this.targPos = height;
+
+    elevatorConfig.closedLoop.maxOutput(moveSpeed);
+    elevatorConfig.closedLoop.minOutput(-moveSpeed);
+    elevatorMotor.configure(elevatorConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+
+    elevatorPID.setReference(targPos, ControlType.kPosition);
+    SmartDashboard.putNumber("Elev: ", targPos);
+    SmartDashboard.putNumber("ElevPos: ", elevatorEncoder.getPosition());
+  }
+
   public void elevate(double moveSpeed, double joystickInput) {
     if (targPos >= HIGH_POS) {
       joystickInput = Math.min(-1, joystickInput);
