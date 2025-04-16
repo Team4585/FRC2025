@@ -68,4 +68,9 @@ public final class WiringConnections {
   public static final int ALGAE_CIM = 10;
   public static final int CORAL_MOTOR = 11;
   public static final int ELEVATOR_MOTOR = 12;
+  public static final int LIFTER_MOTOR_1 = 13;
+  public static final int LIFTER_MOTOR_2 = 14;
+  public static final int ROLLER_COLLECTOR_MOTOR = 99;
+  public static final int ARMJ1_MOTOR = 99;
+  public static final int ARMJ2_MOTOR = 99;
 }

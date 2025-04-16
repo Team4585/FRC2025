@@ -15,7 +15,7 @@ public class FRC2024AutonomousDecisionMaker {
 
   private FRC2024Chassis m_Chassis;
   private Elevator m_Elevator;
-  private CoralHandler m_CoralHandler;
+  private CoralIntakeMotor m_CoralHandler;
 
   private final AutoTaskDriveForward autoStartForward = new AutoTaskDriveForward(2, -0.2);
   // private final AutoTaskDriveForward autoMoveOutOfWay = new AutoTaskDriveForward(0, -.3);
@@ -72,7 +72,7 @@ public class FRC2024AutonomousDecisionMaker {
     autoStartForward.setChassis(m_Chassis);
   }
 
-  public void setCoralHandler(CoralHandler handler) {
+  public void setCoralHandler(CoralIntakeMotor handler) {
     m_CoralHandler = handler;
     autoCoral.setCoralHandler(m_CoralHandler);
   }

@@ -1,5 +1,4 @@
 package frc.robot;
-
 /**
  * Calculates the inverse kinematics for the 2025 arm (arm on elevator)
  * Joint1 attaches the elevator to the first arm segment
