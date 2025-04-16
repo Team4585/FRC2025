@@ -5,10 +5,10 @@ package frc.robot;
  * Joint2 attaches the first arm segment to the end-effector
  */
 public class ArmIK {
-    private double l1;
-    private double l2;
-    private double hmin;
-    private double hmax;
+    private final double l1;
+    private final double l2;
+    private final double hmin;
+    private final double hmax;
 
     /**
      * New arm go brrr

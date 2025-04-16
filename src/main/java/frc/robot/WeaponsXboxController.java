@@ -1,53 +1,56 @@
 package frc.robot;
 
-import frc.robot.huskylib.devices.HuskyXbox;
+import edu.wpi.first.wpilibj.XboxController;
 
-public class WeaponsXboxController extends HuskyXbox {
-    public WeaponsXboxController(int port) {
-        super(port);
+public class WeaponsXboxController {
+    private static final int XBOX_CONTROLLER_PORT = 0;
+    private final XboxController Xbox;
+
+    public WeaponsXboxController() {
+       Xbox = new XboxController(XBOX_CONTROLLER_PORT);
     }
 
     public double getLeftFB() {
-        return getAxisValue(AXIS_LEFT_Y);
+        return Xbox.getLeftY();
     }
 
     public double getRightTrigger() {
-        return getAxisValue(AXIS_RIGHT_TRIGGER);
+        return Xbox.getRightTriggerAxis();
     }
 
     public double getRightFB() {
-        return getAxisValue(AXIS_RIGHT_Y);
+        return Xbox.getRightY();
     }
 
     public boolean buttonYPressEvent() {
-        return buttonPressEvent(3);
+        return Xbox.getYButtonPressed();
     }
 
     public boolean buttonXPressEvent() {
-        return buttonPressEvent(2);
+        return Xbox.getXButtonPressed();
     }
 
     public boolean buttonBPressEvent() {
-        return buttonPressEvent(1);
+        return Xbox.getBButtonPressed();
     }
 
     public boolean buttonAPressEvent() {
-        return buttonPressEvent(0);
+        return Xbox.getAButtonPressed();
     }
 
     public boolean leftBumperPressEvent() {
-        return buttonPressEvent(4);
+        return Xbox.getLeftBumperButtonPressed();
     }
 
     public boolean rightBumperPressEvent() {
-        return buttonPressEvent(5);
+        return Xbox.getRightBumperButtonPressed();
     }
 
     public boolean viewButtonPressEvent() {
-        return buttonPressEvent(6);
+        return Xbox.getBackButtonPressed();
     }
 
     public boolean menuPressEvent() {
-        return buttonPressEvent(7);
+        return Xbox.getStartButtonPressed();
     }
 }

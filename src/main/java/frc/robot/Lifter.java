@@ -7,7 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 public class Lifter extends RoboDevice {
   private VictorSPX lifterMotor1;
   private VictorSPX lifterMotor2;
-  
+
   private double speed = 0.5;
 
   public Lifter() {
@@ -27,15 +27,5 @@ public class Lifter extends RoboDevice {
   public void drop() {
     lifterMotor1.set(ControlMode.PercentOutput, -speed);
     lifterMotor2.set(ControlMode.PercentOutput, speed);
-  }
-
-  @Override
-  public void doGatherInfo() {
-    super.doGatherInfo();
-  }
-
-  @Override
-  public void doActions() {
-    super.doActions();
   }
 }

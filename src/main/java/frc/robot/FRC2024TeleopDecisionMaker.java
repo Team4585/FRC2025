@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FRC2024TeleopDecisionMaker {
   private final FRC2024Joystick m_TheJoystick = new FRC2024Joystick();
-  private final WeaponsXboxController m_weaponsController = new WeaponsXboxController(1);
+  private final WeaponsXboxController m_weaponsController = new WeaponsXboxController();
   private Elevator m_Elevator;
   private FRC2024Chassis m_Chassis;
   private Limelight m_Limelight = new Limelight();
@@ -96,7 +96,7 @@ public class FRC2024TeleopDecisionMaker {
     double offsetHorizontal = m_Limelight.getDegHorizontalFromTarget() + align_rightReefOffset;
 
     if (m_Limelight.isTargetFound()) {
-      double rotate = 0; 
+      double rotate = 0;
       double velocityY = offsetHorizontal * -align_translateSpeed;
       velocityY = Math.max(-align_translateMaxSpeed, Math.min(align_translateMaxSpeed, velocityY));
 

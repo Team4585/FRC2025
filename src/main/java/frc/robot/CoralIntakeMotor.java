@@ -51,14 +51,4 @@ public class CoralIntakeMotor extends RoboDevice {
   private void stopMotor() {
     coralMotor.set(0);
   }
-
-  @Override
-  public void doGatherInfo() {
-    super.doGatherInfo();
-  }
-
-  @Override
-  public void doActions() {
-    super.doActions();
-  }
 }
