@@ -15,8 +15,8 @@ public class Lifter extends RoboDevice {
   }
 
   public void Initialize() {
-    lifterMotor1 = new VictorSPX(WiringConnections.ELEVATOR_MOTOR_1);
-    lifterMotor2 = new VictorSPX(WiringConnections.ELEVATOR_MOTOR_2);
+    lifterMotor1 = new VictorSPX(WiringConnections.LIFTER_MOTOR_1);
+    lifterMotor2 = new VictorSPX(WiringConnections.LIFTER_MOTOR_2);
   }
 
   public void lift() {
